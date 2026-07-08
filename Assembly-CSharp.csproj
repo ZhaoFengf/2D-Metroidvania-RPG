@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\Skill\SkillControllers\BlackHole_HotKey_Controller.cs" />
     <Compile Include="Assets\Scripts\ItemData.cs" />
     <Compile Include="Assets\Scripts\ItemObject.cs" />
+    <Compile Include="Assets\Inventory.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerWallJumpState.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\Scripts\Skill\Dash_Skill.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
+    <Compile Include="Assets\InventoryItem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\Skill\BlackHole_Skill.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
