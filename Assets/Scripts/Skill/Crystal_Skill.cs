@@ -1,0 +1,124 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Crystal_Skill : Skill
+{
+    [SerializeField] private GameObject crystalPrefab;
+    [SerializeField] private float crystalDuration = 2.5f;
+    private GameObject currentCrystal;
+
+    [Header("Crystal mirage")]
+    [SerializeField] private bool cloneInsteadOfCrystal;
+
+    [Header("Explosive crystal")]
+    [SerializeField] private bool canExplode;
+
+    [Header("Moving crystal")]
+    [SerializeField] private bool canMoveToEnemy;
+    [SerializeField] private float moveSpeed;
+
+    [Header("Multi stacking crystal")]
+    [SerializeField] private bool canUseMultiStack;
+    [SerializeField] private int amountOfStacks;
+    [SerializeField] private float multiStackCoolDown;
+    [SerializeField] private float useTimeWindow;
+    [SerializeField] private List<GameObject> crystalleft = new List<GameObject>();
+
+    public override void UseSkill()
+    {
+        base.UseSkill();
+
+        if (canUseMultiCrystal())
+            return;
+
+
+        if(currentCrystal == null)
+        {
+            CreateCrystal();
+        }
+        else
+        {
+            //这里我们换成可以在一定范围内移动到敌人身上，否则可以交换位置。但是移动后原地爆炸的还没解决
+            //if (canMoveToEnemy)
+            //    return;
+
+            Vector2 playerPos = player.transform.position;
+            player.transform.position = currentCrystal.transform.position;
+            currentCrystal.transform.position = playerPos;
+
+            if (cloneInsteadOfCrystal)
+            {
+                SkillManager.instance.clone.CreateClone(currentCrystal.transform, Vector3.zero);
+                Destroy(currentCrystal);
+            }
+            else
+            {
+                currentCrystal.GetComponent<Crystal_Skill_Controller>()?.FinishCrystal();
+            }
+
+        }
+    }
+
+    public void CreateCrystal()
+    {
+        currentCrystal = Instantiate(crystalPrefab, player.transform.position, Quaternion.identity);
+        Crystal_Skill_Controller currentCrystalScript = currentCrystal.GetComponent<Crystal_Skill_Controller>();
+
+        currentCrystalScript.SetUpCrystal(crystalDuration, canExplode, canMoveToEnemy, moveSpeed, FindClosestEnemy(currentCrystal.transform, 25), player);
+
+        //CurentCrystalChooseRandomTarget();
+    }
+
+    public void CurentCrystalChooseRandomTarget() =>
+        currentCrystal.GetComponent<Crystal_Skill_Controller>()?.ChooseRandomEnemy();
+
+    private bool canUseMultiCrystal()
+    {
+        if (canUseMultiStack)
+        {
+            if(crystalleft.Count > 0)
+            {
+                if(crystalleft.Count == amountOfStacks)
+                    Invoke("ResetAbility", useTimeWindow);
+
+                cooldown = 0;
+                GameObject crystalToSpawn = crystalleft[crystalleft.Count - 1];
+                GameObject newCrystal = Instantiate(crystalToSpawn, player.transform.position, Quaternion.identity);
+                crystalleft.Remove(crystalToSpawn);
+
+                newCrystal.GetComponent<Crystal_Skill_Controller>().
+                    SetUpCrystal(crystalDuration, canExplode, canMoveToEnemy, moveSpeed, FindClosestEnemy(newCrystal.transform, 25), player);
+            
+                if(crystalleft.Count <= 0)
+                {
+                    //colldown
+                    //Debug.Log("Refilling crystal");
+                    cooldown = multiStackCoolDown;
+                    RefilCrystal();
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void RefilCrystal()
+    {
+        int amountToRefill = amountOfStacks - crystalleft.Count;
+
+        for (int i = 0; i < amountToRefill; i++)
+        {
+            crystalleft.Add(crystalPrefab);
+        }
+    }
+
+    private void ResetAbility()
+    {
+        if (coolDownTimer > 0)
+            return;
+
+        coolDownTimer = multiStackCoolDown;
+        RefilCrystal();
+    }
+}
