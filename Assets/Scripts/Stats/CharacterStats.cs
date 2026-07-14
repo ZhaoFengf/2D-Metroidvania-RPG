@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
@@ -5,27 +6,27 @@ public class CharacterStats : MonoBehaviour
     private EntityFX fx;
 
     [Header("Major stats")]
-    public Start strength; //Á¦Á¿
-    public Start agility; //Ãô½Ý
-    public Start intelligence; //ÖÇÁ¦
-    public Start vitality; //ÌåÁ¦
+    public Stat strength; //Á¦Á¿
+    public Stat agility; //Ãô½Ý
+    public Stat intelligence; //ÖÇÁ¦
+    public Stat vitality; //ÌåÁ¦
 
     [Header("Offsensive stats")]
-    public Start damage;
-    public Start critChance; //±©»÷ÂÊ
-    public Start critPower;  //±©»÷ÉËº¦
+    public Stat damage;
+    public Stat critChance; //±©»÷ÂÊ
+    public Stat critPower;  //±©»÷ÉËº¦
 
 
     [Header("Defensive stats")]
-    public Start maxHealth;
-    public Start armo; // »¤¼×
-    public Start evasion; //ÉÁ±Ü
-    public Start magicResistance; //Ä§¿¹
+    public Stat maxHealth;
+    public Stat armor; // »¤¼×
+    public Stat evasion; //ÉÁ±Ü
+    public Stat magicResistance; //Ä§¿¹
 
     [Header("Magic stats")]
-    public Start fireDamage;
-    public Start iceDamage;
-    public Start lightningDamage;
+    public Stat fireDamage;
+    public Stat iceDamage;
+    public Stat lightningDamage;
 
 
     public bool isIgnited; //È¼ÉÕ
@@ -48,7 +49,7 @@ public class CharacterStats : MonoBehaviour
     public int currentHealth;
 
     public System.Action onHealthChanged;
-    protected bool isDead;
+    public bool isDead { get; private set; }
 
     protected virtual void Start()
     {
@@ -83,6 +84,17 @@ public class CharacterStats : MonoBehaviour
 
     }
 
+    public virtual void IncreaseStatBy(int _modifier, float _duration, Stat _statToModify)
+    {
+        StartCoroutine(StatModCoroutine(_modifier, _duration, _statToModify));
+    }
+
+    private IEnumerator StatModCoroutine(int _modifier, float _duration, Stat _statToModify)
+    {
+        _statToModify.AddModifier(_modifier);
+        yield return new WaitForSeconds(_duration);
+        _statToModify.RemoveModifier(_modifier);
+    }
 
     public virtual void DoDamage(CharacterStats _targetStats)
     {
@@ -99,7 +111,7 @@ public class CharacterStats : MonoBehaviour
         totalDamage = CheckTargetArmor(_targetStats, totalDamage);
         _targetStats.TakeDamage(totalDamage);
 
-        //DoMagicDamage(_targetStats);
+        DoMagicDamage(_targetStats);
     }
 
     #region Magic Damage and Alilments
@@ -280,6 +292,17 @@ public class CharacterStats : MonoBehaviour
 
     }
 
+    public virtual void IncreaseHealthBy(int _healAmount)
+    {
+        currentHealth += _healAmount;
+        //currentHealth = Mathf.Clamp(currentHealth, 0, GetMaxHealthValue());
+        if(currentHealth > GetMaxHealthValue())
+            currentHealth = GetMaxHealthValue();
+
+        if (onHealthChanged != null)
+            onHealthChanged();
+    }
+
     protected virtual void DecreaseHealthBy(int _damage)
     {
         currentHealth -= _damage;
@@ -298,9 +321,9 @@ public class CharacterStats : MonoBehaviour
     private int CheckTargetArmor(CharacterStats _targetStats, int totalDamage)
     {
         if(_targetStats.isChilled)
-            totalDamage -= Mathf.RoundToInt(_targetStats.armo.GetValue() * 0.2f); //½µµÍ20%»¤¼×
+            totalDamage -= Mathf.RoundToInt(_targetStats.armor.GetValue() * 0.2f); //½µµÍ20%»¤¼×
         else 
-            totalDamage -= _targetStats.armo.GetValue(); //»¤¼×¼õÉË
+            totalDamage -= _targetStats.armor.GetValue(); //»¤¼×¼õÉË
 
         totalDamage = Mathf.Clamp(totalDamage, 0, int.MaxValue);
         return totalDamage;

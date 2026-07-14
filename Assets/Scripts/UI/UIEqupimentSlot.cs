@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class UIEqupimentSlot : UIItemSlot
+{
+    public EquipmentType slotType;
+
+    private void  OnValidate()
+    {
+        gameObject.name = slotType.ToString() + " Slot";
+    }
+
+    public override void OnPointerDown(PointerEventData eventData)
+    {
+        Inventory.instance.UnequipItem(item.data as ItemData_Equipment);
+        Inventory.instance.AddItem(item.data as ItemData_Equipment);
+        CleanUpSlot();
+    }
+}

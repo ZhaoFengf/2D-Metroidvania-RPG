@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//似乎有点bug，就是水晶不能自动追踪时候会直接炸开，这个后续得修改一下
 public class Crystal_Skill : Skill
 {
     [SerializeField] private GameObject crystalPrefab;

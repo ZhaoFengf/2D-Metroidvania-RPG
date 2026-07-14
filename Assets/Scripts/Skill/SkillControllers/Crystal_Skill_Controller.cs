@@ -50,6 +50,9 @@ public class Crystal_Skill_Controller : MonoBehaviour
 
         if (canMove)
         {
+            if (cloestTarget == null)
+                return;
+
             if (Vector2.Distance(transform.position, cloestTarget.position) > 25) //假如太远就不移动5f
             {
                 //目前是假如直接太远了就不移动，即便后边敌人进入范围
@@ -78,7 +81,17 @@ public class Crystal_Skill_Controller : MonoBehaviour
         foreach (var hit in colliders)
         {
             if (hit.GetComponent<Enemy>() != null)
+            {
                 player.stat.DoMagicDamage(hit.GetComponent<CharacterStats>());
+
+                ItemData_Equipment equipedAmulet = Inventory.instance.GetEquipment(EquipmentType.Amulet);
+
+                if(equipedAmulet!= null)//增加饰品的攻击效果
+                {
+                    equipedAmulet.Effect(hit.transform);
+                }
+            }
+                
             //hit.GetComponent<Enemy>().DamageEffect();
         }
     }
