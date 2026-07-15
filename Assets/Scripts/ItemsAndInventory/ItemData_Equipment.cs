@@ -44,6 +44,8 @@ public class ItemData_Equipment : ItemData
     [Header("Craft requirements")]
     public List<InventoryItem> craftingMaterial;
 
+    private int descriptionLength;
+
     public void Effect(Transform _enemyPosition)
     {
         foreach(var item in itemEffects)
@@ -100,6 +102,37 @@ public class ItemData_Equipment : ItemData
 
     public override string GetDescription()
     {
+        sb.Length = 0;
+        descriptionLength = 0;
+
+        AddItemDescription(strength, "Strength");
+        AddItemDescription(agility, "Agility");
+        AddItemDescription(intelligence, "Intelligence");
+        AddItemDescription(vitality, "Vitality");
+
+        AddItemDescription(damage, "Damage");
+        AddItemDescription(critChance, "Crit Chance");
+        AddItemDescription(critPower, "Crit Power");
+
+        AddItemDescription(health, "Health");
+        AddItemDescription(armor, "Armor");
+        AddItemDescription(evasion, "Evasion");
+        AddItemDescription(magicResistance, "Magic Resist");
+
+        AddItemDescription(fireDamage, "Fire Damage");
+        AddItemDescription(iceDamage, "Ice Damage");
+        AddItemDescription(lightningDamage, "Lightning Damage");
+
+
+        if(descriptionLength < 5)
+        {
+            for(int i= descriptionLength; i < 5; i++)
+            {
+                sb.AppendLine();
+                sb.Append("");
+            }
+        }
+
         return sb.ToString();
     }
 
@@ -112,6 +145,8 @@ public class ItemData_Equipment : ItemData
 
             if (_value > 0)
                 sb.Append(_name + ": " + _value);
+
+            descriptionLength++;
         }
     }
 }
