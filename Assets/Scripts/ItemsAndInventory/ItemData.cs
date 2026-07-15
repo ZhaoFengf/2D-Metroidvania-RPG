@@ -13,7 +13,7 @@ public class ItemData : ScriptableObject
 {
     public ItemType itemType;
     public string ItemName;
-    public Sprite Icon;
+    public Sprite Icon; //视频中将其重命名为了itemIcon
 
     [Range(0, 100)]
     public float dropChance;

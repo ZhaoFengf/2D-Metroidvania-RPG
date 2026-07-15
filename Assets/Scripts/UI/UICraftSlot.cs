@@ -5,10 +5,29 @@ using UnityEngine.EventSystems;
 
 public class UICraftSlot : UIItemSlot
 {
-    private void OnEnable()
+    protected override void Start()
     {
-        UpdateSlot(item);
+        base.Start();
     }
+
+    public void SetUpCraftSlot(ItemData_Equipment _data)
+    {
+        if (_data == null)
+            return;
+
+        item.data = _data;
+
+        itemImage.sprite = _data.Icon;
+
+        itemText.text = _data.ItemName;
+    }
+
+    //private void OnEnable()
+    //{
+    //    UpdateSlot(item);
+    //}
+
+
     public override void OnPointerDown(PointerEventData eventData)
     {
         ItemData_Equipment craftData = item.data as ItemData_Equipment;
