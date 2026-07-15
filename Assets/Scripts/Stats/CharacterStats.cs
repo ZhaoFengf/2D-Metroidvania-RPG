@@ -111,7 +111,7 @@ public class CharacterStats : MonoBehaviour
         totalDamage = CheckTargetArmor(_targetStats, totalDamage);
         _targetStats.TakeDamage(totalDamage);
 
-        DoMagicDamage(_targetStats);
+        DoMagicDamage(_targetStats);//这个可能会导致双重判定，即物理和法术攻击均判定一次，假如其有俩属性
     }
 
     #region Magic Damage and Alilments
