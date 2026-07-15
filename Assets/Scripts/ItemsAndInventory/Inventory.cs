@@ -24,10 +24,12 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Transform inventorySlotParent;
     [SerializeField] private Transform stashSlotParent;
     [SerializeField] private Transform equipmentSlotParent;
+    [SerializeField] private Transform statSlotParent;
 
     private UIItemSlot[] inventoryItemSlot;
     private UIItemSlot[] stashItemSlot;
     private UIEqupimentSlot[] equipmentSlot;
+    private UIStatSlot[] statSlot;
 
     [Header("Items cooldown")]
     private float flaskLastUsedTime;
@@ -58,6 +60,7 @@ public class Inventory : MonoBehaviour
         inventoryItemSlot = inventorySlotParent.GetComponentsInChildren<UIItemSlot>();
         stashItemSlot = stashSlotParent.GetComponentsInChildren<UIItemSlot>();
         equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UIEqupimentSlot>();
+        statSlot = statSlotParent.GetComponentsInChildren<UIStatSlot>();
         AddSatrtingItems();
     }
 
@@ -138,11 +141,16 @@ public class Inventory : MonoBehaviour
         {
             stashItemSlot[i].UpdateSlot(stash[i]);
         }
+
+        for(int i =0; i < statSlot.Length; i++)
+        {
+            statSlot[i].UpdateStatValueUI();//这里还有很多问题，需要修改
+        }
     }
 
     public void AddItem(ItemData _item)
     {
-        if (_item.itemType == ItemType.Equipment)
+        if (_item.itemType == ItemType.Equipment && CanAddItem())
             AddToInventory(_item);
         else if(_item.itemType == ItemType.Material)
             AddToStash(_item);
@@ -210,8 +218,22 @@ public class Inventory : MonoBehaviour
         UpdateSlotUI();
     }
 
+    public bool CanAddItem()
+    {
+        if(inventory.Count >= inventoryItemSlot.Length)
+        {
+            Debug.Log("not enough set");
+            return false;
+        }
+        return true;
+    }
+
     public bool CanCraft(ItemData_Equipment _itemToCraft, List<InventoryItem> _requireMaterials)
     {
+        //新增在满了之后不能制造
+        if (!CanAddItem())
+            return false;
+
         List<InventoryItem> materialsToMove = new List<InventoryItem>();
 
         for(int i =0; i< _requireMaterials.Count; i++)

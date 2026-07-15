@@ -102,7 +102,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,7 +121,7 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -134,7 +134,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -154,14 +154,13 @@ TextureImporter:
       name: artdecoUI_PIPO_tr_0
       rect:
         serializedVersion: 2
-        x: 27
+        x: 25
         y: 658
-        width: 224
+        width: 226
         height: 214
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      border: {x: 33, y: 34, z: 31, w: 33}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -179,11 +178,10 @@ TextureImporter:
         x: 311
         y: 673
         width: 312
-        height: 195
+        height: 200
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      border: {x: 24, y: 37, z: 30, w: 29}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -200,12 +198,11 @@ TextureImporter:
         serializedVersion: 2
         x: 680
         y: 680
-        width: 245
+        width: 246
         height: 185
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      border: {x: 31, y: 27, z: 25, w: 27}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -222,12 +219,11 @@ TextureImporter:
         serializedVersion: 2
         x: 992
         y: 712
-        width: 178
+        width: 180
         height: 155
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      border: {x: 28, y: 23, z: 26, w: 26}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -242,14 +238,13 @@ TextureImporter:
       name: artdecoUI_PIPO_tr_4
       rect:
         serializedVersion: 2
-        x: 1229
+        x: 1227
         y: 750
-        width: 178
+        width: 180
         height: 112
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      border: {x: 23, y: 17, z: 23, w: 21}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -265,13 +260,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 708
-        y: 432
+        y: 430
         width: 205
-        height: 203
+        height: 205
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      border: {x: 24, y: 14, z: 28, w: 30}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -286,14 +280,13 @@ TextureImporter:
       name: artdecoUI_PIPO_tr_6
       rect:
         serializedVersion: 2
-        x: 992
-        y: 582
+        x: 991
+        y: 581
         width: 56
         height: 52
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      border: {x: 12, y: 10, z: 13, w: 8}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -314,8 +307,7 @@ TextureImporter:
         height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      border: {x: 9, y: 10, z: 10, w: 10}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -332,12 +324,11 @@ TextureImporter:
         serializedVersion: 2
         x: 1225
         y: 612
-        width: 172
+        width: 174
         height: 84
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      border: {x: 18, y: 18, z: 22, w: 18}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -353,13 +344,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 18
-        y: 403
-        width: 285
-        height: 182
+        y: 401
+        width: 283
+        height: 184
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      border: {x: 38, y: 40, z: 32, w: 39}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -380,8 +370,7 @@ TextureImporter:
         height: 117
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      border: {x: 29, y: 10, z: 33, w: 17}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -403,7 +392,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 7, y: 7, z: 7, w: 7}
-      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -424,8 +412,7 @@ TextureImporter:
         height: 118
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      border: {x: 20, y: 21, z: 26, w: 16}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -447,7 +434,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 17, y: 18, z: 18, w: 18}
-      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -462,14 +448,13 @@ TextureImporter:
       name: artdecoUI_PIPO_tr_17
       rect:
         serializedVersion: 2
-        x: 365
+        x: 362
         y: 91
-        width: 357
+        width: 360
         height: 289
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
+      border: {x: 31, y: 29, z: 30, w: 24}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -481,7 +466,6 @@ TextureImporter:
       edges: []
       weights: []
     outline: []
-    customData: 
     physicsShape: []
     bones: []
     spriteID: 1d5c0b741753e444f816391b8bc5ff12
@@ -491,8 +475,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    spriteCustomMetadata:
-      entries: []
     nameFileIdTable:
       artdecoUI_PIPO_tr_0: 5717465431152502704
       artdecoUI_PIPO_tr_1: -8483078968825879121
