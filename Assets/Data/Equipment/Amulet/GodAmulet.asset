@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: GodAmulet
   m_EditorClassIdentifier: 
   itemType: 1
-  ItemName: 
+  ItemName: GodAmulet
   Icon: {fileID: -398399521, guid: 7ae0115109b4a6f42a4f7ad59397d09b, type: 3}
   dropChance: 39
   equipmentType: 2
+  itemCooldown: 0
   itemEffects:
   - {fileID: 11400000, guid: d281318e026eb6e48a5404f4af916455, type: 2}
   strength: 0

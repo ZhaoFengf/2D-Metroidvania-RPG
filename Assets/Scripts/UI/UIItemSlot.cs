@@ -4,13 +4,19 @@ using UnityEngine.Accessibility;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIItemSlot : MonoBehaviour, IPointerDownHandler
+public class UIItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI itemText;
 
     public InventoryItem item;
+    private UI ui;
 
+
+    private void Start()
+    {
+        ui = GetComponentInParent<UI>();
+    }
 
     public void UpdateSlot(InventoryItem _item)
     {
@@ -57,6 +63,24 @@ public class UIItemSlot : MonoBehaviour, IPointerDownHandler
             //Debug.Log("equiped new item" + item.data.ItemName);
         }
     }
+
+    public virtual void OnPointerEnter(PointerEventData eventData)
+    {
+        if (item == null)
+            return;
+
+        ui.itemToolTip.ShowToolTip(item.data as ItemData_Equipment);
+    }
+
+    public virtual void OnPointerExit(PointerEventData eventData)
+    {
+        if (item == null)
+            return;
+
+        ui.itemToolTip.HideToolTip();
+    }
+
+
 
 }
 
