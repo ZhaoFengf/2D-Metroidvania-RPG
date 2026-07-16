@@ -62,6 +62,8 @@ public class UIItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandl
             Inventory.instance.EquipItem(item.data);
             //Debug.Log("equiped new item" + item.data.ItemName);
         }
+
+        ui.itemToolTip.HideToolTip();
     }
 
     public virtual void OnPointerEnter(PointerEventData eventData)
