@@ -28,6 +28,8 @@ public class Dash_Skill : Skill
         base.Start();
 
         dashUnlockedButton.GetComponent<Button>().onClick.AddListener(UnlockDash);
+        cloneOnDashUnlockedButton.GetComponent<Button>().onClick.AddListener(UnlockCloneOnDash);
+        cloneOnArrivalUnlockedButton.GetComponent<Button>().onClick.AddListener(UnlockCloneOnArrival);
     }
 
     private void UnlockDash()
@@ -38,13 +40,27 @@ public class Dash_Skill : Skill
 
     private void UnlockCloneOnDash()
     {
-        //if(cloneOnDashUnlockedButton.unlocked)
+        if(cloneOnDashUnlockedButton.unlocked)
             cloneOnDashUnlocked = true;
     }
 
     private void UnlockCloneOnArrival()
     {
-        //if(cloneOnArrivalUnlockedButton.unlocked)
+        if(cloneOnArrivalUnlockedButton.unlocked)
             cloneOnArrivalUnlocked = true;
+    }
+
+    // 在冲刺开始位置创建克隆体
+    public void CloneOnDashStart()
+    {
+        if (cloneOnDashUnlocked)
+           SkillManager.instance.clone.CreateClone(player.transform, Vector3.zero);
+    }
+
+    // 在冲刺结束位置创建克隆体
+    public void CloneOnDashArrival()
+    {
+        if (cloneOnArrivalUnlocked)
+            SkillManager.instance.clone.CreateClone(player.transform, Vector3.zero);
     }
 }

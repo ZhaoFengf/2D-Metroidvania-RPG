@@ -8,6 +8,7 @@ public class UISkillTreeSlot : MonoBehaviour,IPointerEnterHandler, IPointerExitH
 {
     private UI ui;
 
+    [SerializeField] private int skillPrize;
     [SerializeField] private string skillName;
     [TextArea]
     [SerializeField] private string skillDescription;
@@ -25,14 +26,17 @@ public class UISkillTreeSlot : MonoBehaviour,IPointerEnterHandler, IPointerExitH
         gameObject.name = "SkillTreeSlot_UI - " + skillName;
     }
 
+    private void Awake()
+    {   
+        GetComponent<Button>().onClick.AddListener(() => UnlockSkillSlot());
+    }
+
     private void Start()
     {
         skillImage = GetComponent<Image>();
         ui = GetComponentInParent<UI>();
 
         skillImage.color = lockedSkillColor;
-
-        GetComponent<Button>().onClick.AddListener(() => UnlockSkillSlot());
     }
 
     //实现前置锁和分支锁
@@ -55,6 +59,19 @@ public class UISkillTreeSlot : MonoBehaviour,IPointerEnterHandler, IPointerExitH
                 return;
             }
         }
+
+        if (unlocked)
+        {
+            Debug.Log("already unlocked");
+            return;
+        }
+
+        if (PlayerManager.instance.HaveEnoughMoney(skillPrize) == false)
+        {
+            Debug.Log("no enough JiNeng Dian");
+            return;
+        }
+
         unlocked = true;
         skillImage.color = Color.white;
     }

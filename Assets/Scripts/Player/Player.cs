@@ -150,6 +150,9 @@ public class Player : Entity
         if(isWallDetected())
             return;
 
+        if(skill.dash.dashUnlocked == false)
+            return;
+
         if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill())
         {
             dashDirection = Input.GetAxisRaw("Horizontal");

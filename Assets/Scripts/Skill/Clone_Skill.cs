@@ -10,8 +10,8 @@ public class Clone_Skill : Skill
     [Space]
     [SerializeField] private bool canAttack = true;
 
-    [SerializeField] private bool createCloneStart;
-    [SerializeField] private bool createCloneOver;
+    //[SerializeField] private bool createCloneStart;
+    //[SerializeField] private bool createCloneOver;
     [SerializeField] private bool canCreateCloneOnCounterAttack;
 
     [Header("Clone Duplication")]
@@ -38,19 +38,6 @@ public class Clone_Skill : Skill
         newClone.GetComponent<Clone_Skill_Contorller>().SetupClone(_clonePosition, cloneDuration, canAttack, _offset, FindClosestEnemy(newClone.transform, 25), canDuplicateClone, chanceToDuplicate, player);
     }
 
-    // 在冲刺开始位置创建克隆体
-    public void CreateCloneOnDashStart()
-    {
-        if (createCloneStart)
-            CreateClone(player.transform, Vector3.zero);
-    }
-
-    // 在冲刺结束位置创建克隆体
-    public void CreateCloneOnDashOver()
-    {
-        if (createCloneOver)
-            CreateClone(player.transform, Vector3.zero);
-    }
 
     public void CreateCloneOnCounterAttack(Transform _enemyTransform)
     {
