@@ -40,12 +40,14 @@ public class PlayerCounterAttackState : PlayerState
                     stateTimer = 10;
                     player.anim.SetBool("SuccessfulCounterAttack", true);
 
+                    player.skill.parry.UseSkill();//使用格挡技能，恢复health
+
                     if (canCreateClone)
                     {
                         canCreateClone = false;
                         //感觉不对劲，被反击了还有再被打一下
-                        //player.skill.clone.CreateClone(hit.transform, new Vector3(2 * player.facingDirection, 0));
-                        player.skill.clone.CreateCloneOnCounterAttack(hit.transform);
+                        //player.skill.clone.CreateCloneWithDelay(hit.transform);
+                        player.skill.parry.MakeMirageOnParry(hit.transform);
                     }
                 }
             }

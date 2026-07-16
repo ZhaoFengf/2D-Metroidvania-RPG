@@ -12,7 +12,7 @@ public class Clone_Skill : Skill
 
     //[SerializeField] private bool createCloneStart;
     //[SerializeField] private bool createCloneOver;
-    [SerializeField] private bool canCreateCloneOnCounterAttack;
+    //[SerializeField] private bool canCreateCloneOnCounterAttack;
 
     [Header("Clone Duplication")]
     [SerializeField] private bool canDuplicateClone;
@@ -39,13 +39,13 @@ public class Clone_Skill : Skill
     }
 
 
-    public void CreateCloneOnCounterAttack(Transform _enemyTransform)
+    public void CreateCloneWithDelay(Transform _enemyTransform)
     {
-        if (canCreateCloneOnCounterAttack)
-            StartCoroutine(CreateCloneWithDelay(_enemyTransform, new Vector3(1f * player.facingDirection, 0)));
+        //if (canCreateCloneOnCounterAttack)
+        StartCoroutine(CloneDelayCorotine(_enemyTransform, new Vector3(1f * player.facingDirection, 0)));
     }
 
-    private IEnumerator CreateCloneWithDelay(Transform _transform, Vector3 _offset)
+    private IEnumerator CloneDelayCorotine(Transform _transform, Vector3 _offset)
     {
         yield return new WaitForSeconds(0.5f);
         CreateClone(_transform, _offset); //这里后面可能得修改，现在生成的clone在敌人背后但朝向没有翻转

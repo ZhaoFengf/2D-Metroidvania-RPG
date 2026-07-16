@@ -128,6 +128,7 @@
     <Compile Include="Assets\Scripts\UI\UI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\Buff_Effect.cs" />
+    <Compile Include="Assets\Scripts\Skill\Parry_Skill.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\ItemEffect.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonStunnedState.cs" />
