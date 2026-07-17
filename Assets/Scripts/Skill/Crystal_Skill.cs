@@ -54,30 +54,45 @@ public class Crystal_Skill : Skill
 
     private void UnlockCrystal()
     {
+        if (crystalUnlocked)
+            return;
+
         if (unlockCrystalButton.unlocked)
             crystalUnlocked = true;
     }
 
     private void UnlockCrystalMirage()
     {
+        if (cloneInsteadOfCrystal)
+            return;
+
         if (unlockCloneInsteadButton.unlocked)
             cloneInsteadOfCrystal = true;
     }
     
     private void UnlockExplosiveCrystal()
     {
+        if (canExplode)
+            return;
+
         if (unlockExplosiveButton.unlocked)
             canExplode = true;
     }
     
     private void UnlockMovingCrystal()
     {
+        if (canMoveToEnemy)
+            return;
+
         if (unlockMovingCrystalButton.unlocked)
             canMoveToEnemy = true;
     }
     
     private void UnlockMultiSatckCrystal()
     {
+        if (canUseMultiStack)
+            return;
+
         if (unlockMultiCrystalButton.unlocked)
             canUseMultiStack = true;
     }

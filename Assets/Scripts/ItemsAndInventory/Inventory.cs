@@ -114,7 +114,7 @@ public class Inventory : MonoBehaviour
 
     public void UpdateSlotUI()
     {
-        for(int i = 0; i < equipmentSlot.Length; i++)
+        for (int i = 0; i < equipmentSlot.Length; i++)
         {
             foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
             {
@@ -127,23 +127,28 @@ public class Inventory : MonoBehaviour
         {
             inventoryItemSlot[i].CleanUpSlot();
         }
-        for(int i = 0; i < stashItemSlot.Length; i++)
+        for (int i = 0; i < stashItemSlot.Length; i++)
         {
             stashItemSlot[i].CleanUpSlot();
         }
 
 
-        for (int i=0; i< inventory.Count; i++)
+        for (int i = 0; i < inventory.Count; i++)
         {
             inventoryItemSlot[i].UpdateSlot(inventory[i]);
         }
 
-        for(int i=0; i <stash.Count; i++)
+        for (int i = 0; i < stash.Count; i++)
         {
             stashItemSlot[i].UpdateSlot(stash[i]);
         }
 
-        for(int i =0; i < statSlot.Length; i++)
+        UpdateStatUI();
+    }
+
+    public void UpdateStatUI()
+    {
+        for (int i = 0; i < statSlot.Length; i++)
         {
             statSlot[i].UpdateStatValueUI();//这里还有很多问题，需要修改
         }

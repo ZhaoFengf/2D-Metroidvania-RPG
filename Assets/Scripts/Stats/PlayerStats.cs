@@ -38,4 +38,11 @@ public class PlayerStats : CharacterStats
         if (currentArmor != null)
             currentArmor.Effect(player.transform);
     }
+
+    public override void OnEvasion()
+    {
+        Debug.Log("attack avoiding");
+        player.skill.dorge.CreateMirageOnDodge();
+
+    }
 }
