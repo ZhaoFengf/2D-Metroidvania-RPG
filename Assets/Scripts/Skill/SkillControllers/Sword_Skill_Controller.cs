@@ -96,6 +96,9 @@ public class Sword_Skill_Controller : MonoBehaviour
         //rb.isKinematic = false;
         transform.parent = null;
         isReturning = true;
+
+        //可以在这里设置剑收回后的冷却时间
+        //player.skill.sword.coolDownTimer = player.skill.sword.cooldown;
     }
 
     private void Update()

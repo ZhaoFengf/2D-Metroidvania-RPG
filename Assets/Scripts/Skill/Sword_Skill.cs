@@ -104,6 +104,10 @@ public class Sword_Skill : Skill
 
     public void CreateSword()
     {
+        ////ÓÃÓÚ½£µÄÀäÈ´
+        //if (coolDownTimer > 0)
+        //    return;
+
         GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
         Sword_Skill_Controller newSwordScript = newSword.GetComponent<Sword_Skill_Controller>();
 

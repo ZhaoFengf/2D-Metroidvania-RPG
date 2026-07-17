@@ -109,6 +109,7 @@
     <Compile Include="Assets\Scripts\Skill\Dodge_Skill.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\ThunderStrike_Effect.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\UI\UIInGame.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerWallJumpState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />

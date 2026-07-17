@@ -8,6 +8,7 @@ public class UI : MonoBehaviour
     [SerializeField] private GameObject skillTreeUI;
     [SerializeField] private GameObject craftUI;
     [SerializeField] private GameObject optionUI;
+    [SerializeField] private GameObject inGameUI;
 
     public UISKillToolTip skillToolTip;
     
@@ -22,8 +23,10 @@ public class UI : MonoBehaviour
 
     void Start()
     {
-        //itemToolTip = GetComponentInChildren<UIItemToolTip>(true);//加true表示允许检查非活跃对象
-        SwitchTo(null);
+        //itemToolTip = GetComponentInChildren<UIItemToolTip>(true);//加true表示允许检查非活跃对象,现在直接在unity中指定对象
+
+        //SwitchTo(null);
+        SwitchTo(inGameUI);
 
         itemToolTip.gameObject.SetActive(false);
         statToolTip.gameObject.SetActive(false);
@@ -57,8 +60,20 @@ public class UI : MonoBehaviour
         if(_menu != null && _menu.activeSelf)
         {
             _menu.SetActive(false);
+            CheckForInGameUI();
             return;
         }
         SwitchTo(_menu);
+    }
+
+    private void CheckForInGameUI()
+    {
+        for(int i=0; i< transform.childCount; i++)
+        {
+            if (transform.GetChild(i).gameObject.activeSelf)
+                return;
+        }
+
+        SwitchTo(inGameUI);
     }
 }
