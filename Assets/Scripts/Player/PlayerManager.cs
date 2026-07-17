@@ -26,4 +26,6 @@ public class PlayerManager : MonoBehaviour
         currency -= _prize;
         return true;
     }
+
+    public int GetCurrency() => currency;
 }

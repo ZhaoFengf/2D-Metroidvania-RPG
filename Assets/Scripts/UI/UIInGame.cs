@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,7 @@ public class UIInGame : MonoBehaviour
     [SerializeField] private Image blackHoleImage;
     [SerializeField] private Image flaskImage;
 
-
+    [SerializeField] private TextMeshProUGUI currentSouls;
 
     //[SerializeField] private float dashCooldown;
     private SkillManager skillManager;
@@ -31,6 +32,8 @@ public class UIInGame : MonoBehaviour
     //后续可以进行优化，过于冗余了;同时关于flask部分可以基于自己的思路进行优化,同时对于冷却时机的判定需要重新设置
     private void Update()
     {
+        currentSouls.text = PlayerManager.instance.GetCurrency().ToString("#,#");
+
         if (Input.GetKeyDown(KeyCode.LeftShift) && skillManager.dash.dashUnlocked)
             SetCooldwonOf(dashImage);
         
