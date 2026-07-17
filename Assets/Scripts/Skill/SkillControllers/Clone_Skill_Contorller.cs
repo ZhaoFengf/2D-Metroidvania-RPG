@@ -10,6 +10,7 @@ public class Clone_Skill_Contorller : MonoBehaviour
     [SerializeField] private float colorFadeSpeed = 1f;
 
     private float cloneTimer;
+    private float attackMultiplier;
     [SerializeField] private Transform attackCheck;
     [SerializeField] private float attackCheckRadius = 0.5f;
     private Transform cloestEnemy;
@@ -38,7 +39,7 @@ public class Clone_Skill_Contorller : MonoBehaviour
                 Destroy(gameObject);
         }
     }
-    public void SetupClone(Transform _newTransform, float _cloneDuration, bool _canAttack, Vector3 _offset, Transform _cloestEnemy, bool _canDuplicateClone, float _chanceToDuplicate, Player _player)
+    public void SetupClone(Transform _newTransform, float _cloneDuration, bool _canAttack, Vector3 _offset, Transform _cloestEnemy, bool _canDuplicateClone, float _chanceToDuplicate, Player _player, float _attackMultiplier)
     {
         if (_canAttack)
             anim.SetInteger("AttackNumber", Random.Range(1,3));
@@ -47,6 +48,7 @@ public class Clone_Skill_Contorller : MonoBehaviour
         canDuplicateClone = _canDuplicateClone;
         chanceToDuplicate = _chanceToDuplicate;
         player = _player;
+        attackMultiplier = _attackMultiplier;
 
         cloestEnemy = _cloestEnemy;
         FaceClosestTarget();
@@ -65,7 +67,18 @@ public class Clone_Skill_Contorller : MonoBehaviour
             if (hit.GetComponent<Enemy>() != null)
             {
                 //hit.GetComponent<Enemy>().DamageEffect();
-                player.stat.DoDamage(hit.GetComponent<CharacterStats>());
+                //player.stat.DoDamage(hit.GetComponent<CharacterStats>());
+                PlayerStats playerStats = player.GetComponent<PlayerStats>();
+                EnemyStats enemyStats = hit.GetComponent<EnemyStats>();
+
+                playerStats.CloneDodamage(enemyStats, attackMultiplier);
+
+                if (player.skill.clone.canApplyOnHitEffect)
+                {
+                    ItemData_Equipment weaponData = Inventory.instance.GetEquipment(EquipmentType.Weapon);
+                    if (weaponData != null)
+                        weaponData.Effect(hit.transform);
+                }
 
                 if (canDuplicateClone)
                 {

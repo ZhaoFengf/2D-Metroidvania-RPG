@@ -45,4 +45,27 @@ public class PlayerStats : CharacterStats
         player.skill.dorge.CreateMirageOnDodge();
 
     }
+
+    public void CloneDodamage(CharacterStats _targetStats, float _multiplier)
+    {
+        if (TargetCanAvoidAttack(_targetStats))
+            return;
+
+        int totalDamage = damage.GetValue() + strength.GetValue();
+
+        if(_multiplier > 0)
+        {
+            totalDamage = Mathf.RoundToInt(totalDamage * _multiplier);
+        }
+
+        if (CanCrit())
+        {
+            totalDamage = CalculateCritDamage(totalDamage);
+        }
+
+        totalDamage = CheckTargetArmor(_targetStats, totalDamage);
+        _targetStats.TakeDamage(totalDamage);
+
+        DoMagicDamage(_targetStats);//这个可能会导致双重判定，即物理和法术攻击均判定一次，假如其有俩属性
+    }
 }

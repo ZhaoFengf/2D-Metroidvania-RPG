@@ -353,7 +353,7 @@ public class CharacterStats : MonoBehaviour
     }
 
     #region Stat Calulation
-    private int CheckTargetArmor(CharacterStats _targetStats, int totalDamage)
+    protected int CheckTargetArmor(CharacterStats _targetStats, int totalDamage)
     {
         if(_targetStats.isChilled)
             totalDamage -= Mathf.RoundToInt(_targetStats.armor.GetValue() * 0.2f); //降低20%护甲
@@ -377,7 +377,7 @@ public class CharacterStats : MonoBehaviour
 
     }
 
-    private bool TargetCanAvoidAttack(CharacterStats _targetStats)
+    protected bool TargetCanAvoidAttack(CharacterStats _targetStats)
     {
         int totalEvasion = _targetStats.evasion.GetValue() + _targetStats.agility.GetValue();
 
@@ -392,7 +392,7 @@ public class CharacterStats : MonoBehaviour
         return false;
     }
 
-    private bool CanCrit()
+    protected bool CanCrit()
     {
         int totalCritChance = critChance.GetValue() + agility.GetValue();
         if (Random.Range(0, 100) < totalCritChance)
@@ -403,7 +403,7 @@ public class CharacterStats : MonoBehaviour
         return false;
     }
 
-    private int CalculateCritDamage(int _damage)
+    protected int CalculateCritDamage(int _damage)
     {
         float totalCritPower = (critPower.GetValue() + strength.GetValue())/100f; //可以修改暴击伤害的计算方式
         //Debug.Log("totalCritPower: " + totalCritPower);

@@ -5,7 +5,7 @@ using UnityEngine;
 public class UI : MonoBehaviour
 {
     [SerializeField] private GameObject characterUI;
-    [SerializeField] private GameObject skillTree;
+    [SerializeField] private GameObject skillTreeUI;
     [SerializeField] private GameObject craftUI;
     [SerializeField] private GameObject optionUI;
 
@@ -14,7 +14,12 @@ public class UI : MonoBehaviour
     public UIItemToolTip itemToolTip;
     public UIStatToolTip statToolTip;
     public UICraftWindow craftWindow;
-    
+
+    private void Awake()
+    {
+        SwitchTo(skillTreeUI);//实现在技能脚本声明事件之前在技能树槽声明事件
+    }
+
     void Start()
     {
         //itemToolTip = GetComponentInChildren<UIItemToolTip>(true);//加true表示允许检查非活跃对象
@@ -31,7 +36,7 @@ public class UI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
             SwitchWithKeyTo(craftUI);
         if (Input.GetKeyDown(KeyCode.K))
-            SwitchWithKeyTo(skillTree);
+            SwitchWithKeyTo(skillTreeUI);
         if (Input.GetKeyDown(KeyCode.O))
             SwitchWithKeyTo(optionUI);
     }
