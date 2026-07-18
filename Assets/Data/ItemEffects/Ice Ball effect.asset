@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bac415cc28641b4cbf509c16e5705c2, type: 3}
   m_Name: Ice Ball effect
   m_EditorClassIdentifier: 
+  efftecDescription: waht
   iceBallPrefab: {fileID: 4643138607464131993, guid: bb957b8e27f965c4aaa993bb23f93626, type: 3}
   velocity: {x: 15, y: 0}

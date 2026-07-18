@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f405d456617965544bd629e92ea51524, type: 3}
   m_Name: Freeze enemies Effect
   m_EditorClassIdentifier: 
+  efftecDescription: 'waht can isay
+
+    waht can isaywaht can isaywaht can isay'
   duration: 1

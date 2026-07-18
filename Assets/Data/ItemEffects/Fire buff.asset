@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34436d1c6db78cf49801d0918a8a55ff, type: 3}
   m_Name: Fire buff
   m_EditorClassIdentifier: 
+  efftecDescription: 'waht can isay
+
+    waht can isay'
   buffType: 11
   buffAmount: 10
   buffDuration: 3

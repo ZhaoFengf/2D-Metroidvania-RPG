@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UISkillTreeSlot : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
+public class UISkillTreeSlot : UIToolTip,IPointerEnterHandler, IPointerExitHandler
 {
     private UI ui;
 
-    [SerializeField] private int skillPrize;
+    [SerializeField] private int skillCost;
     [SerializeField] private string skillName;
     [TextArea]
     [SerializeField] private string skillDescription;
@@ -66,7 +66,7 @@ public class UISkillTreeSlot : MonoBehaviour,IPointerEnterHandler, IPointerExitH
             return;
         }
 
-        if (PlayerManager.instance.HaveEnoughMoney(skillPrize) == false)
+        if (PlayerManager.instance.HaveEnoughMoney(skillCost) == false)
         {
             Debug.Log("no enough JiNeng Dian");
             return;
@@ -78,24 +78,7 @@ public class UISkillTreeSlot : MonoBehaviour,IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ui.skillToolTip.ShowToolTip(skillDescription, skillName);
-
-        //方便显示,感觉装备那边更加需要，而技能就显示在左下角即可
-        Vector2 mousePosition = Input.mousePosition;
-
-        float xOffset = 0;
-        float yOffset = 0;
-
-        if (mousePosition.x > 450)
-            xOffset = -150;
-        else
-            xOffset = 150;
-        if (mousePosition.y > 200)
-            yOffset = -100;
-        else
-            yOffset = 100;
-
-        ui.skillToolTip.transform.position = new Vector2(mousePosition.x + xOffset, mousePosition.y + yOffset);
+        ui.skillToolTip.ShowToolTip(skillDescription, skillName, skillCost);
     }
 
     public void OnPointerExit(PointerEventData eventData)

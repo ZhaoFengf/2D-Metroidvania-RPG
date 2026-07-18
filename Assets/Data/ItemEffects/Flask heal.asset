@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7384cea1c54e170419d3d246caa4687a, type: 3}
   m_Name: Flask heal
   m_EditorClassIdentifier: 
+  efftecDescription: waht can isaywaht can isaywaht can isaywaht can isay
   healPercent: 0.55

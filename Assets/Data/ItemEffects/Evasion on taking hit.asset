@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34436d1c6db78cf49801d0918a8a55ff, type: 3}
   m_Name: Evasion on taking hit
   m_EditorClassIdentifier: 
+  efftecDescription: waht can isaywaht can isay
   buffType: 9
   buffAmount: 15
   buffDuration: 5
