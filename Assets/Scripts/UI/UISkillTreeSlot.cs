@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UISkillTreeSlot : UIToolTip,IPointerEnterHandler, IPointerExitHandler
+public class UISkillTreeSlot : UIToolTip,IPointerEnterHandler, IPointerExitHandler, ISaveManager
 {
     private UI ui;
 
@@ -37,6 +37,9 @@ public class UISkillTreeSlot : UIToolTip,IPointerEnterHandler, IPointerExitHandl
         ui = GetComponentInParent<UI>();
 
         skillImage.color = lockedSkillColor;
+
+        if(unlocked)
+            skillImage.color = Color.white;
     }
 
     //实现前置锁和分支锁
@@ -84,5 +87,24 @@ public class UISkillTreeSlot : UIToolTip,IPointerEnterHandler, IPointerExitHandl
     public void OnPointerExit(PointerEventData eventData)
     {
         ui.skillToolTip.HideToolTip();
+    }
+
+    public void LoadData(GameData _data)
+    {
+        if(_data.skillTree.TryGetValue(skillName, out bool value))
+        {
+            unlocked = value;
+        }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        if(_data.skillTree.TryGetValue(skillName, out bool value))
+        {
+            _data.skillTree.Remove(skillName);
+            _data.skillTree.Add(skillName, unlocked);
+        }
+        else 
+            _data.skillTree.Add(skillName, unlocked);
     }
 }

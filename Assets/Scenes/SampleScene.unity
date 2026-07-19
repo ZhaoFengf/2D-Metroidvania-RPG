@@ -1534,6 +1534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: data_Metroidvania
+  encryptData: 1
 --- !u!1 &116444900
 GameObject:
   m_ObjectHideFlags: 0
@@ -20756,8 +20757,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingItems:
-  - {fileID: 11400000, guid: d3e68e56a57dc164fba912952b4bb16d, type: 2}
-  - {fileID: 11400000, guid: c7303181258d2fe41b4b4046f6792492, type: 2}
   - {fileID: 11400000, guid: ae2f88a82c2187143b4d1facf09cf375, type: 2}
   - {fileID: 11400000, guid: ff58aed57482b2642b0b2e0ba741c900, type: 2}
   - {fileID: 11400000, guid: d3e68e56a57dc164fba912952b4bb16d, type: 2}
@@ -20768,6 +20767,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2e2b4791d82335a4582329ebde0bd273, type: 2}
   - {fileID: 11400000, guid: 612ed0d68e9efb241bf509d22595113b, type: 2}
   - {fileID: 11400000, guid: 270ec8217e4d82443b38fa98441d07c1, type: 2}
+  - {fileID: 11400000, guid: d3e68e56a57dc164fba912952b4bb16d, type: 2}
+  - {fileID: 11400000, guid: d3e68e56a57dc164fba912952b4bb16d, type: 2}
+  - {fileID: 11400000, guid: d3e68e56a57dc164fba912952b4bb16d, type: 2}
+  - {fileID: 11400000, guid: c7303181258d2fe41b4b4046f6792492, type: 2}
+  - {fileID: 11400000, guid: c7303181258d2fe41b4b4046f6792492, type: 2}
   equipment: []
   inventory: []
   stash: []
@@ -20775,6 +20779,8 @@ MonoBehaviour:
   stashSlotParent: {fileID: 373036479}
   equipmentSlotParent: {fileID: 1492164376}
   statSlotParent: {fileID: 926124622}
+  loadedItems: []
+  loadedEquipment: []
 --- !u!4 &1336603804
 Transform:
   m_ObjectHideFlags: 0

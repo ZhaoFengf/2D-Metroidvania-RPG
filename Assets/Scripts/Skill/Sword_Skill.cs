@@ -126,6 +126,19 @@ public class Sword_Skill : Skill
     }
 
     #region Unlock skill
+
+    protected override void CheckUnlock()
+    {
+        base.CheckUnlock();
+
+        UnlockSword();
+        UnlockSpinSword();
+        UnlockBounceSword();
+        UnlockPierceSword();
+        UnlockTimeStop();
+        UnlockVulnerable();
+    }
+
     private void UnlockTimeStop()
     {
         if (timeStopUnlock)

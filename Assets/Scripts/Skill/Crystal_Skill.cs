@@ -52,6 +52,17 @@ public class Crystal_Skill : Skill
 
     #region Unlock skill
 
+    protected override void CheckUnlock()
+    {
+        base.CheckUnlock();
+
+        UnlockCrystal();
+        UnlockCrystalMirage();
+        UnlockExplosiveCrystal();
+        UnlockMovingCrystal();
+        UnlockMultiSatckCrystal();
+    }
+
     private void UnlockCrystal()
     {
         if (crystalUnlocked)

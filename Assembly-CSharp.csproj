@@ -77,7 +77,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\Scripts\UI\UIStatSlot.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonMoveState.cs" />
-    <Compile Include="Assets\Scripts\SaveAndLoad\ISaveMAnager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\Scripts\Stats\ParallaxBackground.cs" />
@@ -179,6 +178,8 @@
     <Compile Include="Assets\Scripts\Player\PlayerBlackHoleState.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Inventory.cs" />
     <Compile Include="Assets\Scripts\Skill\Skill.cs" />
+    <Compile Include="Assets\Scripts\SaveAndLoad\SerializableDictionary.cs" />
+    <Compile Include="Assets\Scripts\SaveAndLoad\ISaveManager.cs" />
     <Compile Include="Assets\Scripts\Skill\Sword_Skill.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\InventoryItem.cs" />

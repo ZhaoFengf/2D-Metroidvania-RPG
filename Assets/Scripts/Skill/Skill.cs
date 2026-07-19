@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Skill : MonoBehaviour
 {
@@ -13,12 +14,21 @@ public class Skill : MonoBehaviour
     protected virtual void Start()
     {
         player = PlayerManager.instance.player;
+
+        CheckUnlock();
     }
 
     protected virtual void Update()
     {
         coolDownTimer -= Time.deltaTime;
     }
+
+
+    protected virtual void CheckUnlock()
+    {
+
+    }
+
 
     public virtual bool CanUseSkill()
     {

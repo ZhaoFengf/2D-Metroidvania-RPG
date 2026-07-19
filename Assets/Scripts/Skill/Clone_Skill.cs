@@ -42,6 +42,17 @@ public class Clone_Skill : Skill
     }
 
     #region Unlock 
+
+    protected override void CheckUnlock()
+    {
+        base.CheckUnlock();
+
+        UnlockCloneAttcak();
+        UnlockAggressive();
+        UnlockMultiClone();
+        UnlockCrystalInstead();
+    }
+
     private void UnlockCloneAttcak()
     {
         if (canAttack)

@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
+using UnityEditor;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, ISaveManager
 {
     public static Inventory instance;
 
@@ -38,6 +39,12 @@ public class Inventory : MonoBehaviour
     public float flaskCooldown { get; private set; }
     private float armorCooldown;
 
+    [Header("Database")]
+    //public string[] assetNames;
+    //private List<ItemData> itemDatabase;
+    public List<InventoryItem> loadedItems;
+    public List<ItemData_Equipment> loadedEquipment;
+
     private void Awake()
     {
         if (instance == null)
@@ -66,6 +73,27 @@ public class Inventory : MonoBehaviour
 
     private void AddSatrtingItems()
     {
+        if(loadedEquipment.Count > 0)
+        {
+            foreach(ItemData_Equipment item in loadedEquipment)
+            {
+                EquipItem(item);
+            }
+        }
+
+        if(loadedItems.Count > 0)
+        {
+            foreach(InventoryItem item in loadedItems)
+            {
+                for(int i=0; i< item.stackSize; i++)
+                {
+                    AddItem(item.data);
+                }
+            }
+
+            return;
+        }
+
         for (int i = 0; i < startingItems.Count; i++)
         {
             if(startingItems[i] != null)
@@ -224,7 +252,7 @@ public class Inventory : MonoBehaviour
         UpdateSlotUI();
     }
 
-    public bool CanAddItem()
+    public bool CanAddItem() //这里有问题，就是当背包满了之后也不能添加相同的装备
     {
         if(inventory.Count >= inventoryItemSlot.Length)
         {
@@ -328,5 +356,68 @@ public class Inventory : MonoBehaviour
         }
         Debug.Log("armor cooldown");
         return false;
+    }
+
+    public void LoadData(GameData _data)
+    {
+        foreach(KeyValuePair<string, int> pair in _data.inventory)
+        {
+            foreach(var item in GetItemDataBase())
+            {
+                if(item != null && item.itemId == pair.Key)
+                {
+                    InventoryItem itemToLoad = new InventoryItem(item);
+                    itemToLoad.stackSize = pair.Value;
+
+                    loadedItems.Add(itemToLoad);
+                }
+            }
+        }
+
+        foreach(string equipmentId in _data.equipment)
+        {
+            foreach(var item in GetItemDataBase())
+            {
+                if(item != null && item.itemId == equipmentId)
+                {
+                    loadedEquipment.Add(item as ItemData_Equipment);
+                }
+            }
+        }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.inventory.Clear();
+        _data.equipment.Clear();
+
+        foreach (KeyValuePair<ItemData, InventoryItem> pair in inventoryDictionary)
+        {
+            _data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
+        }
+        foreach(KeyValuePair<ItemData, InventoryItem> pair in stashDictionary)
+        {
+            _data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
+        }
+        //由于数据在上述已经有保存，这里理论上只要有id就行
+        foreach(KeyValuePair<ItemData_Equipment, InventoryItem> pair in equipmentDictionary)
+        {
+            _data.equipment.Add(pair.Key.itemId);
+        }
+    }
+
+    private List<ItemData> GetItemDataBase()
+    {
+        List<ItemData> itemDatabase = new List<ItemData>();
+        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Data/Items"});
+        //string[] assetNames = AssetDatabase.FindAssets("t:ItemData", new[] { "Assets/Data/Equipment"});
+
+        foreach(string SOName in assetNames)
+        {
+            var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
+            var itemData = AssetDatabase.LoadAssetAtPath<ItemData>(SOpath);
+            itemDatabase.Add(itemData);
+        }
+        return itemDatabase;
     }
 }
