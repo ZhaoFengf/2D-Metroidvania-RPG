@@ -384,6 +384,8 @@ public class Inventory : MonoBehaviour, ISaveManager
                 }
             }
         }
+
+        Debug.Log("inventory load");
     }
 
     public void SaveData(ref GameData _data)

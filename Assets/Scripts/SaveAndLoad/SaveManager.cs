@@ -32,7 +32,7 @@ public class SaveManager : MonoBehaviour
         Debug.Log($"Save file location: {Application.persistentDataPath}/{fileName}");
         saveManagers = FindAllSaveManagers();
 
-        LoadGame();
+        //LoadGame();
     }
 
     //这里是将Awake和Start的内容进行了调整，主要是为了确保在Awake中就能加载数据，而不是等到Start之后，这样可以确保在其他脚本的Start方法中也能访问到已经加载的数据。
@@ -43,7 +43,7 @@ public class SaveManager : MonoBehaviour
         //Debug.Log($"Save file location: {Application.persistentDataPath}/{fileName}");
         //saveManagers = FindAllSaveManagers();
 
-        //LoadGame();
+        LoadGame();
     }
 
     public void NewGame()
@@ -79,7 +79,6 @@ public class SaveManager : MonoBehaviour
         }
 
         dataHandler.Save(gameData);
-        Debug.Log("save currency: " + gameData.currency);
     }
 
     private void OnApplicationQuit()
@@ -91,6 +90,15 @@ public class SaveManager : MonoBehaviour
     {
         IEnumerable<ISaveManager> saveManagers = FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveManager>();
         return new List<ISaveManager>(saveManagers);
+    }
+
+    public bool HasSaveData()
+    {
+        if (dataHandler.Load() != null)
+            return true;
+
+        gameData = null; //由于load方法会返回一个新的GameData对象，所以这里需要将gameData设置为null，以便在没有存档数据时创建新的GameData对象。
+        return false;
     }
 
 }

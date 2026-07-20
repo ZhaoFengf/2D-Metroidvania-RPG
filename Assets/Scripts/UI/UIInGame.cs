@@ -15,10 +15,16 @@ public class UIInGame : MonoBehaviour
     [SerializeField] private Image blackHoleImage;
     [SerializeField] private Image flaskImage;
 
-    [SerializeField] private TextMeshProUGUI currentSouls;
 
     //[SerializeField] private float dashCooldown;
     private SkillManager skillManager;
+
+
+    [Header("Souls info")]
+    [SerializeField] private TextMeshProUGUI currentSouls;
+    [SerializeField] private float soulsAmount;
+    [SerializeField] private float increaseRate = .1f;
+
 
     private void Start()
     {
@@ -32,17 +38,19 @@ public class UIInGame : MonoBehaviour
     //后续可以进行优化，过于冗余了;同时关于flask部分可以基于自己的思路进行优化,同时对于冷却时机的判定需要重新设置
     private void Update()
     {
-        currentSouls.text = PlayerManager.instance.GetCurrency().ToString("#,#");
+        UpdateSoulsUI();
+
+        //currentSouls.text = PlayerManager.instance.GetCurrency().ToString("#,#");
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && skillManager.dash.dashUnlocked)
             SetCooldwonOf(dashImage);
-        
+
         if (Input.GetKeyDown(KeyCode.Q) && skillManager.parry.parryUnlocked)
             SetCooldwonOf(parryImage);
 
         if (Input.GetKeyDown(KeyCode.F) && skillManager.crystal.crystalUnlocked)
             SetCooldwonOf(crystalImage);
-        
+
         if (Input.GetKeyDown(KeyCode.Mouse1) && skillManager.sword.swordUnlocked)
             SetCooldwonOf(swordThrowImage);
 
@@ -59,6 +67,16 @@ public class UIInGame : MonoBehaviour
         CheckCooldownOf(blackHoleImage, skillManager.blackHole.cooldown);
 
         CheckCooldownOf(flaskImage, Inventory.instance.flaskCooldown);
+    }
+
+    private void UpdateSoulsUI()
+    {
+        if (soulsAmount < PlayerManager.instance.GetCurrency())
+            soulsAmount += Time.deltaTime * increaseRate;
+        else
+            soulsAmount = PlayerManager.instance.GetCurrency();
+
+        currentSouls.text = ((int)soulsAmount).ToString();
     }
 
     private void UpdateHealthUI()

@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\UI\UICraftSlot.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\Enemy_Skeleton.cs" />
     <Compile Include="Assets\Scripts\Stats\EntityFX.cs" />
+    <Compile Include="Assets\Scripts\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\ItemObject.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerJumpState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCounterAttackState.cs" />
@@ -104,8 +105,10 @@
     <Compile Include="Assets\Scripts\Player\PlayerPrimaryAttackState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
+    <Compile Include="Assets\Scripts\LostCurrencyController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Scripts\Skill\SkillControllers\BlackHole_HotKey_Controller.cs" />
+    <Compile Include="Assets\Scripts\UI\UIMainMenu.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\ItemDrop.cs" />
     <Compile Include="Assets\Scripts\Skill\Dodge_Skill.cs" />
@@ -125,6 +128,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\Skill\BlackHole_Skill.cs" />
+    <Compile Include="Assets\Scripts\UI\UIFadeScreen.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerGroundedState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
@@ -156,6 +160,7 @@
     <Compile Include="Assets\Scripts\Skill\SkillControllers\BlackHole_Skill_Controller.cs" />
     <Compile Include="Assets\Scripts\Skill\SkillControllers\Crystal_Skill_Controller.cs" />
     <Compile Include="Assets\Scripts\SaveAndLoad\FileDataHandler.cs" />
+    <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonIdleState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerIdleState.cs" />

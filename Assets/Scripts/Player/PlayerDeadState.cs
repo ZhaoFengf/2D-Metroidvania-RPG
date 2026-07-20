@@ -16,6 +16,9 @@ public class PlayerDeadState : PlayerState
     public override void Enter()
     {
         base.Enter();
+
+        //GameObject.FindObjectOfType<UI>().fadeScreen.FadeOut();//这里可以传参数进行修改，对于不同的场景，淡入淡出时间不同
+        GameObject.FindObjectOfType<UI>().SwitchOnEndScreen();
     }
 
     public override void Exit()
