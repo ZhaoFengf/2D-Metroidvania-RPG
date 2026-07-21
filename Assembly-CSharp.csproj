@@ -176,8 +176,8 @@
     <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\Heal_Effect.cs" />
     <Compile Include="Assets\Scripts\Stats\EnemyStats.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Effects\Player_FX.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\ItemObject_Trigger.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAirState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStateMachine.cs" />

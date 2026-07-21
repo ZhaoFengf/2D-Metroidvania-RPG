@@ -9,6 +9,7 @@ public class SaveManager : MonoBehaviour
 
     [SerializeField] private string fileName;
     [SerializeField] private bool encryptData;
+    //[SerializeField] private string filePath = "idbfs/zhaoff08182002hellowprld";
 
     private GameData gameData;
     private List<ISaveManager> saveManagers;
@@ -28,11 +29,12 @@ public class SaveManager : MonoBehaviour
         else
             instance = this;
 
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);//基于不同的系统决定不同的路径，但是这里先根据教程进行学习
-        Debug.Log($"Save file location: {Application.persistentDataPath}/{fileName}");
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
+        //dataHandler = new FileDataHandler(filePath, fileName, encryptData); //web发布时不能使上面的，应该使用当前这个
+        //Debug.Log($"Save file location: {Application.persistentDataPath}/{fileName}");
         saveManagers = FindAllSaveManagers();
 
-        //LoadGame();
+        LoadGame();
     }
 
     //这里是将Awake和Start的内容进行了调整，主要是为了确保在Awake中就能加载数据，而不是等到Start之后，这样可以确保在其他脚本的Start方法中也能访问到已经加载的数据。
@@ -42,8 +44,8 @@ public class SaveManager : MonoBehaviour
         //dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);//基于不同的系统决定不同的路径，但是这里先根据教程进行学习
         //Debug.Log($"Save file location: {Application.persistentDataPath}/{fileName}");
         //saveManagers = FindAllSaveManagers();
-
-        LoadGame();
+        //Invoke("LoadGame", 1f);
+        //LoadGame();
     }
 
     public void NewGame()

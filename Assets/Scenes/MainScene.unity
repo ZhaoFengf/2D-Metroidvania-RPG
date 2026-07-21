@@ -18944,7 +18944,7 @@ Transform:
   m_GameObject: {fileID: 841302200}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.32, z: 0}
+  m_LocalPosition: {x: -0.113, y: -1.221, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30401,7 +30401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.98742133, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -30711,7 +30711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -31352,6 +31352,21 @@ MonoBehaviour:
   stashSlotParent: {fileID: 373036479}
   equipmentSlotParent: {fileID: 1492164376}
   statSlotParent: {fileID: 926124622}
+  itemDatabase:
+  - {fileID: 11400000, guid: 260b604607824d746893a8a5c34093d8, type: 2}
+  - {fileID: 11400000, guid: ae2f88a82c2187143b4d1facf09cf375, type: 2}
+  - {fileID: 11400000, guid: 270ec8217e4d82443b38fa98441d07c1, type: 2}
+  - {fileID: 11400000, guid: 612ed0d68e9efb241bf509d22595113b, type: 2}
+  - {fileID: 11400000, guid: a35a7107a4a42be4786b7ff86015095d, type: 2}
+  - {fileID: 11400000, guid: 230e49d4447515e458bdd29ce12b8320, type: 2}
+  - {fileID: 11400000, guid: 2e2b4791d82335a4582329ebde0bd273, type: 2}
+  - {fileID: 11400000, guid: 2e6111ef4f3038948a9670c4543f255c, type: 2}
+  - {fileID: 11400000, guid: 4e07046aa9932a64db5799567c7b1320, type: 2}
+  - {fileID: 11400000, guid: 4b5452025af77124cba5668af0b35de4, type: 2}
+  - {fileID: 11400000, guid: a9bfd3a6f39470f4591a5e82211f85d0, type: 2}
+  - {fileID: 11400000, guid: ff58aed57482b2642b0b2e0ba741c900, type: 2}
+  - {fileID: 11400000, guid: d3e68e56a57dc164fba912952b4bb16d, type: 2}
+  - {fileID: 11400000, guid: c7303181258d2fe41b4b4046f6792492, type: 2}
   loadedItems: []
   loadedEquipment: []
 --- !u!4 &1336603804
@@ -45319,7 +45334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8814528f72393c4ab4cc1eb70a8ed60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 3
+  cooldown: 0
   coolDownTimer: 0
   crystalPrefab: {fileID: 6093543764287604849, guid: 5236f96d382be724f851c23a3378e35a, type: 3}
   crystalDuration: 2.5
@@ -45328,6 +45343,7 @@ MonoBehaviour:
   cloneInsteadOfCrystal: 0
   unlockExplosiveButton: {fileID: 1364918610}
   canExplode: 0
+  explosiveCoolDown: 3
   unlockMovingCrystalButton: {fileID: 2095394610}
   canMoveToEnemy: 0
   moveSpeed: 5

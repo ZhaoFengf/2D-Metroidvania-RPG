@@ -50,6 +50,11 @@ public class PlayerGroundedState : PlayerState
 
         if (Input.GetButtonDown("Jump") && player.isGroundedDeteced())
             stateMachine.ChangeState(player.jumpState);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private bool HasNoSword()

@@ -40,8 +40,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     private float armorCooldown;
 
     [Header("Database")]
-    //public string[] assetNames;
-    //private List<ItemData> itemDatabase;
+    public List<ItemData> itemDatabase;
     public List<InventoryItem> loadedItems;
     public List<ItemData_Equipment> loadedEquipment;
 
@@ -362,7 +361,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     {
         foreach(KeyValuePair<string, int> pair in _data.inventory)
         {
-            foreach(var item in GetItemDataBase())
+            foreach(var item in itemDatabase)//GetItemDataBase()
             {
                 if(item != null && item.itemId == pair.Key)
                 {
@@ -376,7 +375,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
         foreach(string equipmentId in _data.equipment)
         {
-            foreach(var item in GetItemDataBase())
+            foreach(var item in itemDatabase)//GetItemDataBase()
             {
                 if(item != null && item.itemId == equipmentId)
                 {
@@ -408,6 +407,13 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
     }
 
+#if UNITY_EDITOR
+    [ContextMenu("fill up item database")]
+    private void FillUpItemDatabase()
+    {
+        itemDatabase = new List<ItemData>(GetItemDataBase());
+    }
+
     private List<ItemData> GetItemDataBase()
     {
         List<ItemData> itemDatabase = new List<ItemData>();
@@ -422,4 +428,5 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
         return itemDatabase;
     }
+#endif
 }
