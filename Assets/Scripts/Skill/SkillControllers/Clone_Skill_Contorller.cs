@@ -68,6 +68,9 @@ public class Clone_Skill_Contorller : MonoBehaviour
             {
                 //hit.GetComponent<Enemy>().DamageEffect();
                 //player.stat.DoDamage(hit.GetComponent<CharacterStats>());
+
+                hit.GetComponent<Entity>().SetupKnockbackDir(transform);
+
                 PlayerStats playerStats = player.GetComponent<PlayerStats>();
                 EnemyStats enemyStats = hit.GetComponent<EnemyStats>();
 
