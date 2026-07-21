@@ -17,8 +17,9 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance != null)
+        if (instance != null)
             Destroy(instance.gameObject);
+            //Destroy(gameObject);
         else
             instance = this;
 
@@ -66,9 +67,13 @@ public class AudioManager : MonoBehaviour
         {
             _audio.volume -= _audio.volume * .2f;
             yield return new WaitForSeconds(.1f);
+            if(_audio.volume <= .1f)
+            {
+                _audio.Stop();
+                _audio.volume = defaultVolume;
+                break;
+            }
         }
-        _audio.Stop();
-        _audio.volume = defaultVolume;
     } 
 
     public void PlayBGM(int _bgmIndex)

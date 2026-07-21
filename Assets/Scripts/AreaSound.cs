@@ -18,7 +18,8 @@ public class AreaSound : MonoBehaviour
     {
         if(collision.GetComponent<Player>() != null)
         {
-            AudioManager.instance.StopSFXWithTime(areaSoundIndex);
+            if (AudioManager.instance != null)
+                AudioManager.instance.StopSFXWithTime(areaSoundIndex);
         }
     }
 }

@@ -40,6 +40,8 @@ public class PlayerStats : CharacterStats
         {
             player.SetupKnockbackPower(new Vector2(5, 8));
 
+            player.fx.ScreenShake(player.fx.shakeHighDamage);
+
             //AudioManager.instance.PlaySFX(0);
 
             Debug.Log("high damage");

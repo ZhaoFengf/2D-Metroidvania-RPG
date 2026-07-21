@@ -26,6 +26,7 @@ public class Player : Entity
 
     public SkillManager skill { get; private set; }
     public GameObject sword { get; private set; }
+    public Player_FX fx { get; private set; }
 
 
     #region States
@@ -74,6 +75,8 @@ public class Player : Entity
     protected override void Start()
     {
         base.Start();
+
+        fx = GetComponent<Player_FX>();//原本这里对应的是fx，因为这里改了，所以其余地方也要改成playerFX
 
         skill = SkillManager.instance;
 

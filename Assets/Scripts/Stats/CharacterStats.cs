@@ -131,6 +131,8 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void DoDamage(CharacterStats _targetStats)
     {
+        bool criticalHit = false;
+
         if (TargetCanAvoidAttack(_targetStats))
             return;
 
@@ -141,7 +143,10 @@ public class CharacterStats : MonoBehaviour
         if (CanCrit())
         {
             totalDamage = CalculateCritDamage(totalDamage);
+            criticalHit = true;
         }
+
+        fx.CreateHitFX(_targetStats.transform, criticalHit);
 
         totalDamage = CheckTargetArmor(_targetStats, totalDamage);
         _targetStats.TakeDamage(totalDamage);
@@ -340,6 +345,7 @@ public class CharacterStats : MonoBehaviour
             onHealthChanged();
     }
 
+    //后续可以根据伤害显示不同的颜色
     protected virtual void DecreaseHealthBy(int _damage)
     {
         if (isVulnerable)
@@ -347,7 +353,10 @@ public class CharacterStats : MonoBehaviour
 
         currentHealth -= _damage;
 
-        if(onHealthChanged != null)
+        if(_damage > 0)
+            fx.CreatePopupText(_damage.ToString());
+
+        if (onHealthChanged != null)
             onHealthChanged();
     }
 
