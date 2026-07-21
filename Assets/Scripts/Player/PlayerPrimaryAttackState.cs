@@ -14,6 +14,9 @@ public class PlayerPrimaryAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
+
+        AudioManager.instance.PlaySFX(0, null);//播放音效，其中的0对应对应的音频索引下标
+
         xInput = 0; //用于在攻击状态中锁定xInput，防止在攻击过程中改变方向
         if (Time.time - lastAttackTime > comboWindow || comboCounter > 2)
             comboCounter = 0;

@@ -29,6 +29,7 @@ public class CheckPoint : MonoBehaviour
 
     public void ActivateCheckPiont()
     {
+        //AudioManager.instance.PlaySFX(0, transform);//可在这里设置音频
         activated = true;
         anim.SetBool("active", true);
     }

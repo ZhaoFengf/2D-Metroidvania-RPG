@@ -18,6 +18,8 @@ public class SkeletonIdleState : SkeletonGroundedState
     public override void Exit()
     {
         base.Exit();
+
+        AudioManager.instance.PlaySFX(0, enemy.transform); //目前仅有一个音效，主要用于学习方法
     }
 
     public override void Update()

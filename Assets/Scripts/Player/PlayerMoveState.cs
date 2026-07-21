@@ -11,11 +11,15 @@ public class PlayerMoveState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
+
+        //AudioManager.instance.PlaySFX(0); //这里后续如果真想要做可以添加这一句，使用对应的音频；可以分析尝试loop以及在update中使用
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        //AudioManager.instance.StopSFX(0); //这里后续如果真想要做可以添加这一句，停止对应的音频
     }
 
     public override void Update()

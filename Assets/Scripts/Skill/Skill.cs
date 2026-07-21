@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class Skill : MonoBehaviour
 {
     public float cooldown;
-    protected float coolDownTimer;
+    public float coolDownTimer;
 
     protected Player player;
 
