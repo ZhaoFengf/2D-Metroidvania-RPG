@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Arrow_Controller : MonoBehaviour
 {
-    [SerializeField] private int damage = 1;
+    //[SerializeField] private int damage = 1;
     [SerializeField] private string targetLayerName = "Player";
 
     [SerializeField] private float xVelocity;

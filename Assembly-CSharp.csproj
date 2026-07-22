@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Enemy\Archer\ArcherStunnedState.cs" />
     <Compile Include="Assets\Scripts\Skill\Clone_Skill.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\ItemData.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Shady\ShadyIdleState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAimSwordState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerDashState.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Assets\Scripts\Enemy\Skeleton\Enemy_Skeleton.cs" />
     <Compile Include="Assets\Scripts\Stats\EntityFX.cs" />
     <Compile Include="Assets\Scripts\CheckPoint.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Shady\ShadyMoveState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Slime\SlimeAttackState.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\ItemObject.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerJumpState.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Assets\Scripts\UI\UIMainMenu.cs" />
     <Compile Include="Assets\Scripts\Enemy\Slime\Enemy_Slime.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Shady\ShadyBattleState.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\ItemDrop.cs" />
     <Compile Include="Assets\Scripts\Skill\Dodge_Skill.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\ThunderStrike_Effect.cs" />
@@ -149,6 +152,7 @@
     <Compile Include="Assets\Scripts\Skill\SkillControllers\Sword_Skill_Controller.cs" />
     <Compile Include="Assets\Scripts\UI\UI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Shady\ShadyStunnedState.cs" />
     <Compile Include="Assets\Scripts\Skill\Parry_Skill.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\Buff_Effect.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -163,6 +167,7 @@
     <Compile Include="Assets\Scripts\Stats\CharacterStats.cs" />
     <Compile Include="Assets\Scripts\Skill\Crystal_Skill.cs" />
     <Compile Include="Assets\Scripts\Controllers\Arrow_Controller.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Shady\ShadyDeadState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMoveState.cs" />
     <Compile Include="Assets\Scripts\UI\UICraftList.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
@@ -190,6 +195,7 @@
     <Compile Include="Assets\Scripts\DeadZone.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCatchSwordState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Shady\ShadyGroundedState.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\Heal_Effect.cs" />
     <Compile Include="Assets\Scripts\Stats\EnemyStats.cs" />
     <Compile Include="Assets\Scripts\Effects\Player_FX.cs" />
@@ -211,7 +217,9 @@
     <Compile Include="Assets\Scripts\SaveAndLoad\SerializableDictionary.cs" />
     <Compile Include="Assets\Scripts\SaveAndLoad\ISaveManager.cs" />
     <Compile Include="Assets\Scripts\Skill\Sword_Skill.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Shady\Enemy_Shady.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
+    <Compile Include="Assets\Scripts\Controllers\ExplosiveController.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\InventoryItem.cs" />
   </ItemGroup>
   <ItemGroup>
