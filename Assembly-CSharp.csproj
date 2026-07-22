@@ -63,8 +63,10 @@
     <Compile Include="Assets\Scripts\SaveAndLoad\SaveManager.cs" />
     <Compile Include="Assets\Scripts\Skill\SkillManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIOptions.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Archer\Enemy_Archer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerWallSlideState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Archer\ArcherStunnedState.cs" />
     <Compile Include="Assets\Scripts\Skill\Clone_Skill.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\ItemData.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonDeadState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Archer\ArcherMoveState.cs" />
     <Compile Include="Assets\Scripts\Effects\AfterImageFX.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonAttackState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
@@ -108,6 +111,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\UI\UICraftWindow.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Archer\ArcherJumpState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerPrimaryAttackState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
@@ -131,6 +135,7 @@
     <Compile Include="Assets\Scripts\UI\UIItemToolTip.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\Scripts\ShockStrikeController.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Archer\ArcherIdleState.cs" />
     <Compile Include="Assets\Scripts\Skill\Dash_Skill.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
@@ -147,6 +152,7 @@
     <Compile Include="Assets\Scripts\Skill\Parry_Skill.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\Buff_Effect.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Archer\ArcherGroundedState.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\ItemEffect.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonStunnedState.cs" />
     <Compile Include="Assets\Scripts\UI\UIHealthBar.cs" />
@@ -156,13 +162,16 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\Scripts\Stats\CharacterStats.cs" />
     <Compile Include="Assets\Scripts\Skill\Crystal_Skill.cs" />
+    <Compile Include="Assets\Scripts\Controllers\Arrow_Controller.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMoveState.cs" />
     <Compile Include="Assets\Scripts\UI\UICraftList.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Archer\ArcherDeadState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimationTriggers.cs" />
     <Compile Include="Assets\Scripts\UI\UIEqupimentSlot.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Archer\ArcherAttackState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Scripts\Manager\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Effects\PopUpText.cs" />
@@ -187,6 +196,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\ItemObject_Trigger.cs" />
     <Compile Include="Assets\Scripts\Enemy\Slime\SlimeIdleState.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Archer\ArcherBattleState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAirState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStateMachine.cs" />
     <Compile Include="Assets\Scripts\Stats\Entity.cs" />

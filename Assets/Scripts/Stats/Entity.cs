@@ -14,16 +14,16 @@ public class Entity : MonoBehaviour
 
     [Header("Collision")]
     public Transform attackCheck;
-    public float attackCheckRadius;
+    public float attackCheckRadius = 1.2f;
     [SerializeField] protected Transform groundCheck;
-    [SerializeField] protected float groundCheckDistance;
+    [SerializeField] protected float groundCheckDistance = 1f;
     [SerializeField] protected Transform wallCheck;
-    [SerializeField] protected float wallCheckDistance;
+    [SerializeField] protected float wallCheckDistance = .8f;
     [SerializeField] protected LayerMask groundLayer;
 
     [Header("Knockback Info")]
-    [SerializeField] protected Vector2 knockbackPower;
-    [SerializeField] protected Vector2 knockbackOffset;
+    [SerializeField] protected Vector2 knockbackPower = new Vector2(7, 12);
+    [SerializeField] protected Vector2 knockbackOffset = new Vector2(.5f, 2);
     [SerializeField] protected float knockBackDuration = 0.07f;
     protected bool isKnocekbacked = false;
 
