@@ -1,7 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
+[RequireComponent(typeof(EnemyStats))]
+[RequireComponent(typeof(EntityFX))]
+[RequireComponent(typeof(ItemDrop))]
 public class Enemy : Entity
 {
     [SerializeField] protected LayerMask whatIsPlayer;
@@ -19,6 +23,7 @@ public class Enemy : Entity
     private float defaultMoveSpeed;
 
     [Header("Attack Info")]
+    public float agroDistance = 2;
     public float attackDistance;
     public float attackCoolDown;
     public float minAttackCoolDown;

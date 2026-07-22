@@ -23,6 +23,7 @@ public class Entity : MonoBehaviour
 
     [Header("Knockback Info")]
     [SerializeField] protected Vector2 knockbackPower;
+    [SerializeField] protected Vector2 knockbackOffset;
     [SerializeField] protected float knockBackDuration = 0.07f;
     protected bool isKnocekbacked = false;
 
@@ -79,7 +80,11 @@ public class Entity : MonoBehaviour
     protected virtual IEnumerator HitKnockBack()
     {
         isKnocekbacked = true;
-        rb.velocity = new Vector2(knockbackPower.x * knockbackDir, knockbackPower.y);
+
+        float xOffset = Random.Range(knockbackOffset.x, knockbackOffset.y); //这里的偏移xy值指的是区间，而不是xy方向值
+
+        //if(knockbackPower.x > 0 || knockbackPower.y > 0)
+        rb.velocity = new Vector2((knockbackPower.x + xOffset) * knockbackDir, knockbackPower.y);
 
         yield return new WaitForSeconds(knockBackDuration);
         isKnocekbacked = false;
@@ -117,12 +122,20 @@ public class Entity : MonoBehaviour
     protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, groundCheck.position + Vector3.down * groundCheckDistance);//0,-1,0
-        Gizmos.DrawLine(wallCheck.position, wallCheck.position + Vector3.right * wallCheckDistance);//1,0,0
+        Gizmos.DrawLine(wallCheck.position, wallCheck.position + Vector3.right * wallCheckDistance * facingDirection);//1,0,0
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
     #endregion
 
     #region Flip
+
+    public virtual void SetupDefaultFacingDir(int _facingDir)
+    {
+        facingDirection = _facingDir;
+        if(facingDirection == -1)
+            isFacingRight = false;
+    }
+
     public void Flip()
     {
         facingDirection *= -1;
