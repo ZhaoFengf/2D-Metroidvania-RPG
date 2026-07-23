@@ -1,34 +1,59 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemDrop : MonoBehaviour
 {
-    [SerializeField] private int amountOfItems;
-    [SerializeField] private ItemData[] possibleDrop;
-    private List<ItemData> dropList = new List<ItemData>();
+    [SerializeField] private int maxItemsToDrop;
+    [SerializeField] private ItemData[] itemPool;
+    private List<ItemData> possibleDrop = new List<ItemData>();
     [SerializeField] private GameObject dropPrefab;
     //[SerializeField] private ItemData item;
 
     public virtual void GenerateDrop()
     {
-        for(int i=0; i < possibleDrop.Length; i++)
+        if(itemPool.Length == 0)
         {
-            if(Random.Range(0,100)< possibleDrop[i].dropChance)
+            Debug.LogWarning("Item pool is empty. No items to drop.");
+            return;
+        }
+        foreach(ItemData item in itemPool)
+        {
+            if(item != null && Random.Range(0f, 100f) < item.dropChance)
             {
-                dropList.Add(possibleDrop[i]);
+                possibleDrop.Add(item);
+            }
+        }
+        for(int i =0; i < maxItemsToDrop; i++)
+        {
+            if(possibleDrop.Count > 0)
+            {
+                int randomIndex = Random.Range(0, possibleDrop.Count);
+                ItemData itemToDrop = possibleDrop[randomIndex];
+                DropItem(itemToDrop);
+                possibleDrop.Remove(itemToDrop);
             }
         }
 
-        int itemsToDrop = Mathf.Min(amountOfItems, dropList.Count);
-        //for(int i=0; i<amountOfItems; i++)
-        for (int i=0; i< itemsToDrop; i++)
-        {
-            ItemData randomItem = dropList[Random.Range(0, dropList.Count)];
-            
-            dropList.Remove(randomItem);
-            DropItem(randomItem);
-        }
+
+        //for(int i=0; i < itemPool.Length; i++)
+        //{
+        //    if(Random.Range(0,100)< itemPool[i].dropChance)
+        //    {
+        //        possibleDrop.Add(itemPool[i]);
+        //    }
+        //}
+
+        //int itemsToDrop = Mathf.Min(maxItemsToDrop, possibleDrop.Count);
+
+        //for (int i=0; i< itemsToDrop; i++)
+        //{
+        //    ItemData randomItem = possibleDrop[Random.Range(0, possibleDrop.Count)];
+
+        //    possibleDrop.Remove(randomItem);
+        //    DropItem(randomItem);
+        //}
     }
 
     protected void DropItem(ItemData _itemData)

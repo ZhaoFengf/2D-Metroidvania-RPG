@@ -27805,9 +27805,11 @@ MonoBehaviour:
   minAttackCoolDown: 1
   maxAttackCoolDown: 2
   lastTimeAttacked: 0
+  bossFightBegin: 0
   spellPrefab: {fileID: 9035870511173003466, guid: 0f5a41095479d29408eac39ecce8e782, type: 3}
   amountOfSpells: 3
   spellCooldown: 1
+  lastTimeCast: 0
   spellStateCooldown: 10
   arena: {fileID: 1294096944}
   surroundingCheckSize: {x: 2.7, y: 2.5}
@@ -27825,8 +27827,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9bee1d7ba82ef48bab4f93b2f7b324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfItems: 0
-  possibleDrop: []
+  maxItemsToDrop: 10
+  itemPool:
+  - {fileID: 11400000, guid: d3e68e56a57dc164fba912952b4bb16d, type: 2}
+  - {fileID: 11400000, guid: d3e68e56a57dc164fba912952b4bb16d, type: 2}
+  - {fileID: 11400000, guid: 260b604607824d746893a8a5c34093d8, type: 2}
+  - {fileID: 11400000, guid: 270ec8217e4d82443b38fa98441d07c1, type: 2}
+  - {fileID: 11400000, guid: 2e6111ef4f3038948a9670c4543f255c, type: 2}
   dropPrefab: {fileID: 3551394831164054284, guid: 084363a1e8f5c3e48a32e35c892d079e, type: 3}
 --- !u!114 &1071536058
 MonoBehaviour:
@@ -46046,8 +46053,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a18c2e7b1e1d4f4f869d0ac3d83343f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfItems: 0
-  possibleDrop: []
+  maxItemsToDrop: 0
+  itemPool: []
   dropPrefab: {fileID: 3551394831164054284, guid: 084363a1e8f5c3e48a32e35c892d079e, type: 3}
   chanceToLoseEquipments: 0
   chanceToLoseMaterials: 0

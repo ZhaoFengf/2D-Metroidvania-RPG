@@ -263,6 +263,35 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public bool CanCraft(ItemData_Equipment _itemToCraft, List<InventoryItem> _requireMaterials)
     {
+        foreach(var requiredItem in _requireMaterials)
+        {
+            if(stashDictionary.TryGetValue(requiredItem.data, out InventoryItem stashItem))
+            {
+                if(stashItem.stackSize < requiredItem.stackSize)
+                {
+                    Debug.Log("not enough material");
+                    return false;
+                }
+            }
+            else
+            {
+                Debug.Log("not enough material");
+                return false;
+            }
+        }
+
+        foreach(var requiredMaterial in _requireMaterials)
+        {
+            for(int i = 0; i < requiredMaterial.stackSize; i++)
+            {
+                RemoveItem(requiredMaterial.data);
+            }
+        }
+
+        AddItem(_itemToCraft);
+
+        return true;
+        /* 上面新的是修复代码，仅供参考学习
         //新增在满了之后不能制造
         if (!CanAddItem())
             return false;
@@ -297,13 +326,10 @@ public class Inventory : MonoBehaviour, ISaveManager
                 RemoveItem(material.data);
             }
         }
-        //for (int i = 0; i < materialsToMove.Count; i++)
-        //{
-        //    RemoveItem(materialsToMove[i].data);
-        //}
 
         AddItem(_itemToCraft);
         return true;
+        */
     }
 
     public List<InventoryItem> GetEquipmentList() => equipment;

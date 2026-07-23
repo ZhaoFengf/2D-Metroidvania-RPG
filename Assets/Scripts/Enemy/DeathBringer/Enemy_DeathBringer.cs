@@ -65,7 +65,7 @@ public class Enemy_DeathBringer : Enemy
 
         float xOffset = Random.Range(-player.facingDirection, player.facingDirection * 2);
 
-        Vector3 spellPosition = new Vector3(player.transform.position.x + xOffset, player.transform.position.y + 3);
+        Vector3 spellPosition = new Vector3(player.transform.position.x + xOffset, player.transform.position.y + 2.5f);
 
         if (player.rb.velocity.x == 0)
             spellPosition.x = player.transform.position.x;

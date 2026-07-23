@@ -27,6 +27,8 @@ public class Clone_Skill_Contorller : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
 
+        StartCoroutine(FaceClosestTarget());
+
     }
 
     private void Update()
@@ -41,7 +43,7 @@ public class Clone_Skill_Contorller : MonoBehaviour
                 Destroy(gameObject);
         }
     }
-    public void SetupClone(Transform _newTransform, float _cloneDuration, bool _canAttack, Vector3 _offset, Transform _cloestEnemy, bool _canDuplicateClone, float _chanceToDuplicate, Player _player, float _attackMultiplier)
+    public void SetupClone(Transform _newTransform, float _cloneDuration, bool _canAttack, Vector3 _offset, bool _canDuplicateClone, float _chanceToDuplicate, Player _player, float _attackMultiplier)
     {
         if (_canAttack)
             anim.SetInteger("AttackNumber", Random.Range(1,3));
@@ -52,8 +54,7 @@ public class Clone_Skill_Contorller : MonoBehaviour
         player = _player;
         attackMultiplier = _attackMultiplier;
 
-        cloestEnemy = _cloestEnemy;
-        FaceClosestTarget();
+        //FaceClosestTarget();
     }
 
     private void AnimationTrigger()
@@ -96,9 +97,12 @@ public class Clone_Skill_Contorller : MonoBehaviour
         }
     }
 
-    private void FaceClosestTarget()
+    private IEnumerator FaceClosestTarget()
     {
-        
+        yield return null;
+
+        FindClosestEnemy();
+
         if(cloestEnemy != null)
         {
 
@@ -107,14 +111,23 @@ public class Clone_Skill_Contorller : MonoBehaviour
                 faceDirection = -1;
                 transform.Rotate(0, 180, 0);
             }
-            //int targetDirection = transform.position.x > cloestEnemy.position.x ? -1 : 1;
 
-            //if (faceDirection != targetDirection)
-            //{
-            //    transform.Rotate(0, 180, 0);
-            //    faceDirection = targetDirection;
-            //}
+        }
+    }
 
+    private void  FindClosestEnemy()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, cloestEnemyCheckRadius, whatIsEnemy);
+        float closestDistance = Mathf.Infinity;
+
+        foreach (var hit in colliders)
+        {
+            float distanceToEnemy = Vector2.Distance(transform.position, hit.transform.position);
+            if (distanceToEnemy < closestDistance)
+            {
+                closestDistance = distanceToEnemy;
+                cloestEnemy = hit.transform;
+            }
         }
     }
 

@@ -113,9 +113,9 @@ public class Clone_Skill : Skill
         GameObject newClone = Instantiate(clonePrefab);
 
         //这里需要计算的是偏移后的位置，不然朝向可能不对
-        newClone.transform.position = _clonePosition.position + _offset;
+        //newClone.transform.position = _clonePosition.position + _offset;
 
-        newClone.GetComponent<Clone_Skill_Contorller>().SetupClone(_clonePosition, cloneDuration, canAttack, _offset, FindClosestEnemy(newClone.transform, 25), canDuplicateClone, chanceToDuplicate, player, attackMultiplier);
+        newClone.GetComponent<Clone_Skill_Contorller>().SetupClone(_clonePosition, cloneDuration, canAttack, _offset, canDuplicateClone, chanceToDuplicate, player, attackMultiplier);
     }
 
 

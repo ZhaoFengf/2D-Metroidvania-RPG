@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SkeletonBattleState : EnemyState
@@ -7,6 +6,8 @@ public class SkeletonBattleState : EnemyState
     private Transform player;
     private Enemy_Skeleton enemy;
     private int MoveDirection;
+
+    private bool flippedOnce;
     public SkeletonBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Skeleton enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
         this.enemy = enemy;
@@ -16,10 +17,13 @@ public class SkeletonBattleState : EnemyState
     {
         base.Enter();
         //player = GameObject.Find("Player").transform;
-        player = PlayerManager.instance.player.transform;//Ω⁄ °À„¡¶
+        player = PlayerManager.instance.player.transform;
 
         if (player.GetComponent<PlayerStats>().isDead)
             stateMachine.ChangeState(enemy.moveState);
+
+        stateTimer = enemy.battleTime;
+        flippedOnce = false;
     }
 
     public override void Exit()
@@ -31,6 +35,7 @@ public class SkeletonBattleState : EnemyState
     {
         base.Update();
         
+        enemy.anim.SetFloat("xVelocity", enemy.rb.velocity.x);
 
         if (enemy.IsPlayDetected())
         {
@@ -43,9 +48,20 @@ public class SkeletonBattleState : EnemyState
         }
         else
         {
-            if(stateTimer <= 0 || Vector2.Distance(player.position, enemy.transform.position) > 10)
+            if(flippedOnce == false)
+            {
+                flippedOnce = true;
+                enemy.Flip();
+            }
+                
+
+            if (stateTimer <= 0 || Vector2.Distance(player.position, enemy.transform.position) > 10)
                 stateMachine.ChangeState(enemy.idleState);
         }
+        float distanceToPlayerX = Mathf.Abs(player.position.x - enemy.transform.position.x);
+
+        if (distanceToPlayerX < .8f)
+            return;
 
         if (player.position.x > enemy.transform.position.x)
             MoveDirection = 1;

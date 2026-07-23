@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Arrow_Controller : MonoBehaviour
 {
+    private SpriteRenderer sr;
+
     //[SerializeField] private int damage = 1;
     [SerializeField] private string targetLayerName = "Player";
 
@@ -15,17 +17,27 @@ public class Arrow_Controller : MonoBehaviour
     [SerializeField] private bool flipped;
 
     private CharacterStats myStats;
+    private int facingDir = 1;
 
     private void Update()
     {
         if(canMove)
             rb.velocity  = new Vector2(xVelocity, rb.velocity.y);
+
+        if (facingDir == 1 && rb.velocity.x < 0f)
+        {
+            facingDir = -1;
+            sr.flipX = true;
+        }
     }
 
     public void SetupArrow(float _speed, CharacterStats _myStats)
     {
+        sr = GetComponent<SpriteRenderer>();
+
         xVelocity = _speed;
         myStats = _myStats;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

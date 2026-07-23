@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy_Skeleton : Enemy
 {
+
     #region
     public SkeletonIdleState idleState { get; private set; }
     public SkeletonMoveState moveState { get; private set; }
@@ -18,7 +19,7 @@ public class Enemy_Skeleton : Enemy
         base.Awake();
         idleState = new SkeletonIdleState(this, stateMachine, "Idle", this);
         moveState = new SkeletonMoveState(this, stateMachine, "Move", this);
-        battleState = new SkeletonBattleState(this, stateMachine, "Move", this);
+        battleState = new SkeletonBattleState(this, stateMachine, "Battle", this);
         attackState = new SkeletonAttackState(this, stateMachine, "Attack", this);
         stunnedState = new SkeletonStunnedState(this, stateMachine, "Stunned", this);
         deadState = new SkeletonDeadState(this, stateMachine, "Idle", this);//这里是由于使用最后状态
@@ -30,15 +31,10 @@ public class Enemy_Skeleton : Enemy
         stateMachine.Initialize(idleState);
     }
 
-    //protected override void Update()
-    //{
-    //    base.Update();
-
-    //    if(Input.GetKeyDown(KeyCode.U))
-    //    {
-    //        stateMachine.ChangeState(stunnedState);
-    //    }
-    //}
+    protected override void Update()
+    {
+        base.Update();
+    }
 
     public override bool CanBeStunned()
     {
