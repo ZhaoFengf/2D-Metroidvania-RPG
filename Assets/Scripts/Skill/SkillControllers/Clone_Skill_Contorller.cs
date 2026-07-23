@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Clone_Skill_Contorller : MonoBehaviour
@@ -13,12 +12,15 @@ public class Clone_Skill_Contorller : MonoBehaviour
     private float attackMultiplier;
     [SerializeField] private Transform attackCheck;
     [SerializeField] private float attackCheckRadius = 0.5f;
-    private Transform cloestEnemy;
     private int faceDirection = 1;
 
     private bool canDuplicateClone;
     private float chanceToDuplicate = 50f;
 
+    [Space]
+    [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField] private float cloestEnemyCheckRadius = 25f;
+    [SerializeField ] private Transform cloestEnemy;
 
     private void Awake()
     {

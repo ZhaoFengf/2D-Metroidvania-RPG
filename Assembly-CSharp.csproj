@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Skill\SkillManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIOptions.cs" />
     <Compile Include="Assets\Scripts\Enemy\Archer\Enemy_Archer.cs" />
+    <Compile Include="Assets\Scripts\Enemy\DeathBringer\DeathBringerAttackState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerWallSlideState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Archer\ArcherStunnedState.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonDeadState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
+    <Compile Include="Assets\Scripts\Enemy\DeathBringer\DeathBringerBattleState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Archer\ArcherMoveState.cs" />
     <Compile Include="Assets\Scripts\Effects\AfterImageFX.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonAttackState.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Assets\Scripts\UI\UIVolumeSlider.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
+    <Compile Include="Assets\Scripts\Enemy\DeathBringer\DeathBringerSpellCastState.cs" />
     <Compile Include="Assets\Scripts\Stats\ParallaxBackground.cs" />
     <Compile Include="Assets\Scripts\Stats\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\UI\UISKillToolTip.cs" />
@@ -92,7 +95,9 @@
     <Compile Include="Assets\Scripts\Enemy\EnemyState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerDeadState.cs" />
     <Compile Include="Assets\Scripts\UI\UICraftSlot.cs" />
+    <Compile Include="Assets\Scripts\Enemy\DeathBringer\DeathBringerTeleportState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\Enemy_Skeleton.cs" />
+    <Compile Include="Assets\Scripts\Enemy\DeathBringer\DeathBringerIdleState.cs" />
     <Compile Include="Assets\Scripts\Stats\EntityFX.cs" />
     <Compile Include="Assets\Scripts\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\Enemy\Shady\ShadyMoveState.cs" />
@@ -111,8 +116,10 @@
     <Compile Include="Assets\Scripts\Skill\SkillControllers\Clone_Skill_Contorller.cs" />
     <Compile Include="Assets\Scripts\AreaSound.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Enemy_DeathBringerTrigger.cs" />
     <Compile Include="Assets\Scripts\UI\UICraftWindow.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Enemy\DeathBringer\Enemy_DeathBringer.cs" />
     <Compile Include="Assets\Scripts\Enemy\Archer\ArcherJumpState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerPrimaryAttackState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
@@ -150,9 +157,9 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\Enemy\Slime\SlimeStunnedState.cs" />
     <Compile Include="Assets\Scripts\Skill\SkillControllers\Sword_Skill_Controller.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Shady\ShadyStunnedState.cs" />
     <Compile Include="Assets\Scripts\UI\UI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
-    <Compile Include="Assets\Scripts\Enemy\Shady\ShadyStunnedState.cs" />
     <Compile Include="Assets\Scripts\Skill\Parry_Skill.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\Buff_Effect.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -171,6 +178,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerMoveState.cs" />
     <Compile Include="Assets\Scripts\UI\UICraftList.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
+    <Compile Include="Assets\Scripts\Controllers\DeadBringerSpellController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\Enemy\Archer\ArcherDeadState.cs" />
@@ -210,6 +218,7 @@
     <Compile Include="Assets\Scripts\Enemy\Enemy_AnimationTriggers.cs" />
     <Compile Include="Assets\Scripts\ThunderStrikeController.cs" />
     <Compile Include="Assets\Scripts\UI\UIStatToolTip.cs" />
+    <Compile Include="Assets\Scripts\Enemy\DeathBringer\DeathBringerDeadState.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\IceBall_Effect.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBlackHoleState.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Inventory.cs" />

@@ -5,25 +5,24 @@ using UnityEngine.UI;
 
 public class UIHealthBar : MonoBehaviour
 {
-    private Entity entity;
-    private CharacterStats myStats;
+    private Entity entity => GetComponentInParent<Entity>();
+    private CharacterStats myStats => GetComponentInParent<CharacterStats>();
     private RectTransform myTransform;
     private Slider slider;
 
     private void Start()
     {
         myTransform = GetComponent<RectTransform>();
-        entity = GetComponentInParent<Entity>();
         slider = GetComponentInChildren<Slider>();
-        myStats = GetComponentInParent<CharacterStats>();
-
-        entity.onFlipped += FilpUI;
-        myStats.onHealthChanged += UpdateHealthUI;
 
         UpdateHealthUI();
     }
 
-    
+    private void OnEnable()
+    {
+        entity.onFlipped += FilpUI;
+        myStats.onHealthChanged += UpdateHealthUI;
+    }
 
     private void UpdateHealthUI()
     {
@@ -31,11 +30,14 @@ public class UIHealthBar : MonoBehaviour
         slider.value = myStats.currentHealth;
     }
 
-    private void FilpUI()=> myTransform.Rotate(0, 180, 0);
     private void OnDisable()
     {
-        entity.onFlipped -= FilpUI;
-        myStats.onHealthChanged -= UpdateHealthUI;
+        if(entity != null)
+            entity.onFlipped -= FilpUI;
+
+        if(myStats != null)
+            myStats.onHealthChanged -= UpdateHealthUI;
     }
+    private void FilpUI()=> myTransform.Rotate(0, 180, 0);
 
 }
