@@ -88,6 +88,11 @@ public class SaveManager : MonoBehaviour
         SaveGame();
     }
 
+    public void SaveAndQuit()
+    {
+        SaveGame();
+        Application.Quit();
+    }
     private List<ISaveManager> FindAllSaveManagers()
     {
         IEnumerable<ISaveManager> saveManagers = FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveManager>();
