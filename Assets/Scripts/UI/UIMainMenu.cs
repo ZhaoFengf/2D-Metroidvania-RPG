@@ -30,7 +30,7 @@ public class UIMainMenu : MonoBehaviour
     public void ExitGame()
     {
         Debug.Log("Exiting game...");
-        //Application.Quit();
+        Application.Quit();
     }
 
     IEnumerator LoadSceneWithFadeEffect(float _dalay) //这个_delay需要考虑到淡入淡出动画的时间长度
