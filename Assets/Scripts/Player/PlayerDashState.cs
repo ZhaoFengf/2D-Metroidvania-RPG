@@ -27,7 +27,7 @@ public class PlayerDashState : PlayerState
 
         player.skill.dash.CloneOnDashArrival();
 
-        player.SetVelocity(0f, rb.velocity.y);
+        player.SetVelocity(0f, player.rb.velocity.y);
 
         player.stat.MakeInvencible(false);
     }

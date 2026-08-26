@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class Player : Entity
 {
+    public PlayerInput PlayerInput { get; private set; }
+
     [Header("Attack details")]
     public Vector2 [] attackMovement;
     public float counterAttackDuration = .2f;
@@ -50,6 +52,9 @@ public class Player : Entity
     protected override void Awake()
     {
         base.Awake();
+
+        PlayerInput = GetComponent<PlayerInput>();
+
         stateMachine = new PlayerStateMachine();
 
         idleState = new PlayerIdleState(this, stateMachine, "Idle");
@@ -70,6 +75,7 @@ public class Player : Entity
         blackHoleState = new PlayerBlackHoleState(this, stateMachine, "Jump");
 
         deadState = new PlayerDeadState(this, stateMachine, "Die");
+
     }
 
     protected override void Start()
@@ -98,10 +104,10 @@ public class Player : Entity
 
         CheckForDashInput();
 
-        if(Input.GetKeyDown(KeyCode.F) && skill.crystal.crystalUnlocked)
+        if(UnityEngine.Input.GetKeyDown(KeyCode.F) && skill.crystal.crystalUnlocked)
             skill.crystal.CanUseSkill();
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) //主键盘的1
+        if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha1)) //主键盘的1
         {
             Inventory.instance.UseFlask();
         }
@@ -159,9 +165,9 @@ public class Player : Entity
         if(skill.dash.dashUnlocked == false)
             return;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill())
+        if (UnityEngine.Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill())
         {
-            dashDirection = Input.GetAxisRaw("Horizontal");
+            dashDirection = UnityEngine.Input.GetAxisRaw("Horizontal");
 
             if(dashDirection == 0f)
                 dashDirection = facingDirection;

@@ -10,22 +10,22 @@ public class PlayerPrimaryAttackState : PlayerState
     public PlayerPrimaryAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
-
+ 
     public override void Enter()
     {
         base.Enter();
 
         AudioManager.instance.PlaySFX(0, null);//播放音效，其中的0对应对应的音频索引下标
 
-        xInput = 0; //用于在攻击状态中锁定xInput，防止在攻击过程中改变方向
+        player.PlayerInput.XInput = 0; //用于在攻击状态中锁定xInput，防止在攻击过程中改变方向
         if (Time.time - lastAttackTime > comboWindow || comboCounter > 2)
             comboCounter = 0;
 
         player.anim.SetInteger("ComboCounter", comboCounter);
 
         float attackDirection = player.facingDirection;
-        if(xInput != 0)
-            attackDirection = xInput;
+        if(player.PlayerInput.XInput != 0)
+            attackDirection = player.PlayerInput.XInput;
 
         player.SetVelocity(player.attackMovement[comboCounter].x * attackDirection, player.attackMovement[comboCounter].y);
 

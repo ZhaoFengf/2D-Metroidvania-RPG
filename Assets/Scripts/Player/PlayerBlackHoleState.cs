@@ -24,7 +24,7 @@ public class PlayerBlackHoleState : PlayerState
         defaultGravityScale = player.rb.gravityScale;
         skillUsed = false;
         stateTimer = flyTime;
-        rb.gravityScale = 0f;
+        player.rb.gravityScale = 0f;
     }
 
     public override void Exit()
@@ -40,10 +40,10 @@ public class PlayerBlackHoleState : PlayerState
         base.Update();
 
         if (stateTimer > 0)
-            rb.velocity = new Vector2(0, 15);
+            player.rb.velocity = new Vector2(0, 15);
         if (stateTimer < 0)
         {
-            rb.velocity = new Vector2(0, -.1f);
+            player.rb.velocity = new Vector2(0, -.1f);
             if (!skillUsed)
             {
                 if(player.skill.blackHole.CanUseSkill())

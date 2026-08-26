@@ -32,13 +32,13 @@ public class PlayerWallSlideState : PlayerState
         }
             
 
-        if (xInput != 0 && player.facingDirection != xInput)
+        if (player.PlayerInput.XInput != 0 && player.facingDirection != player.PlayerInput.XInput)
             stateMachine.ChangeState(player.idleState);
 
-        if(yInput < 0)
-            rb.velocity = new Vector2(0, rb.velocity.y * 1.5f);
+        if(player.PlayerInput.YInput < 0)
+            player.rb.velocity = new Vector2(0, player.rb.velocity.y * 1.5f);
         else
-            rb.velocity = new Vector2(0, rb.velocity.y * 0.7f);
+            player.rb.velocity = new Vector2(0, player.rb.velocity.y * 0.7f);
 
         if(player.isGroundedDeteced())
             stateMachine.ChangeState(player.idleState);

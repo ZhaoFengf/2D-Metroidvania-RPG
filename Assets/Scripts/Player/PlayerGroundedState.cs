@@ -22,6 +22,17 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
 
+        if (!player.isGroundedDeteced())
+        {
+            stateMachine.ChangeState(player.airState);
+            return;
+        }
+
+        if (player.PlayerInput.JumpPressed) //260826，删除 && player.isGroundedDeteced()，由于上述代码已经进行return了
+            stateMachine.ChangeState(player.jumpState);
+
+
+        /* 20260826 对其进行重构，先进行注释，后续恢复并转移到其它的地方
         if (Input.GetKeyDown(KeyCode.R) && player.skill.blackHole.blackHoleUnlocked)
         {
             if (player.skill.blackHole.coolDownTimer > 0)
@@ -43,18 +54,11 @@ public class PlayerGroundedState : PlayerState
         if (Input.GetKeyDown(KeyCode.Mouse0))
             stateMachine.ChangeState(player.primaryAttackState);
 
-        //if(Input.GetKeyDown(KeyCode.LeftShift)) 设置在这里的话就只能地面上冲刺
-        //    stateMachine.ChangeState(player.dashState);
-        if (!player.isGroundedDeteced())
-            stateMachine.ChangeState(player.airState);
-
-        if (Input.GetButtonDown("Jump") && player.isGroundedDeteced())
-            stateMachine.ChangeState(player.jumpState);
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }
+        */
     }
 
     private bool HasNoSword()
