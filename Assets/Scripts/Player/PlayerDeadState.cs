@@ -30,6 +30,6 @@ public class PlayerDeadState : PlayerState
     {
         base.Update();
 
-        player.SetZeroVelocity();
+        player.Movement.Stop();
     }
 }

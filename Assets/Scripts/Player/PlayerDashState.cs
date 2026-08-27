@@ -27,7 +27,7 @@ public class PlayerDashState : PlayerState
 
         player.skill.dash.CloneOnDashArrival();
 
-        player.SetVelocity(0f, player.rb.velocity.y);
+        player.Movement.Stop();
 
         player.stat.MakeInvencible(false);
     }
@@ -39,14 +39,18 @@ public class PlayerDashState : PlayerState
         if (!player.isGroundedDeteced() && player.isWallDetected())
         {
             stateMachine.ChangeState(player.wallSlideState);
+            return;
         }
 
-        player.SetVelocity(player.dashSpeed * player.dashDirection, 0);
 
         if (stateTimer <= 0f)
         {
             stateMachine.ChangeState(player.idleState);
+            return;
         }
+
+        player.Movement.Dash(player.dashDirection);
+
         player.fx.CreateAfterImage();
     }
 }

@@ -28,12 +28,13 @@ public class PlayerGroundedState : PlayerState
             return;
         }
 
-        if (player.PlayerInput.JumpPressed) //260826，删除 && player.isGroundedDeteced()，由于上述代码已经进行return了
+        if (player.PlayerInput.JumpPressed)
+        {
             stateMachine.ChangeState(player.jumpState);
+            return;
+        }
 
-
-        /* 20260826 对其进行重构，先进行注释，后续恢复并转移到其它的地方
-        if (Input.GetKeyDown(KeyCode.R) && player.skill.blackHole.blackHoleUnlocked)
+        if (player.PlayerInput.BlackHolePressed && player.skill.blackHole.blackHoleUnlocked)
         {
             if (player.skill.blackHole.coolDownTimer > 0)
             {
@@ -42,17 +43,24 @@ public class PlayerGroundedState : PlayerState
             }
                 
             stateMachine.ChangeState(player.blackHoleState);
+            return;
         }
-            
+
+        if (player.PlayerInput.CounterPressed && player.skill.parry.parryUnlocked)
+        {
+            stateMachine.ChangeState(player.counterAttackState);
+            return;
+        }
+
+        if (player.PlayerInput.AttackPressed)
+        {
+            stateMachine.ChangeState(player.primaryAttackState);
+            return;
+        }
+        /* 20260826 对其进行重构，先进行注释，后续恢复并转移到其它的地方
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword() && player.skill.sword.swordUnlocked) 
             stateMachine.ChangeState(player.aimSwordState);
-
-        if (Input.GetKeyDown(KeyCode.Q) && player.skill.parry.parryUnlocked)
-            stateMachine.ChangeState(player.counterAttackState);
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            stateMachine.ChangeState(player.primaryAttackState);
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

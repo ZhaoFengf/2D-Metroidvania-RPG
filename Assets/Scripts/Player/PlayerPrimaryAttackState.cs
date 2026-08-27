@@ -17,7 +17,7 @@ public class PlayerPrimaryAttackState : PlayerState
 
         AudioManager.instance.PlaySFX(0, null);//播放音效，其中的0对应对应的音频索引下标
 
-        player.PlayerInput.XInput = 0; //用于在攻击状态中锁定xInput，防止在攻击过程中改变方向
+        //player.PlayerInput.XInput = 0; //用于在攻击状态中锁定xInput，防止在攻击过程中改变方向
         if (Time.time - lastAttackTime > comboWindow || comboCounter > 2)
             comboCounter = 0;
 
@@ -37,7 +37,7 @@ public class PlayerPrimaryAttackState : PlayerState
         base.Exit();
 
 
-        player.StartCoroutine("BusyFor", .12f);
+        player.StartCoroutine(player.BusyFor(.12f));
         comboCounter++;
         lastAttackTime = Time.time;
     }
@@ -47,7 +47,7 @@ public class PlayerPrimaryAttackState : PlayerState
         base.Update();
 
         if (stateTimer <= 0)
-            player.SetZeroVelocity();
+            player.Movement.Stop();
 
         if (triggerCalled)
             stateMachine.ChangeState(player.idleState);

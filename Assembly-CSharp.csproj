@@ -213,6 +213,7 @@
     <Compile Include="Assets\Scripts\Enemy\Slime\SlimeIdleState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Archer\ArcherBattleState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAirState.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStateMachine.cs" />
     <Compile Include="Assets\Scripts\Stats\Entity.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\ItemData_Equipment.cs" />

@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class PlayerState
 {
-    protected PlayerStateMachine stateMachine;
-    protected Player player;
+    protected readonly PlayerStateMachine stateMachine;
+    protected readonly Player player;
 
-    private string animBoolName;
+    private readonly string animBoolName;
 
     protected float stateTimer;
     protected bool triggerCalled;

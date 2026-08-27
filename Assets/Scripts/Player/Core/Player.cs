@@ -5,7 +5,13 @@ using UnityEngine.EventSystems;
 
 public class Player : Entity
 {
+    #region Component
     public PlayerInput PlayerInput { get; private set; }
+    public PlayerMovement Movement { get; private set; }
+    public SkillManager skill { get; private set; }
+    public GameObject sword { get; private set; }
+    public Player_FX fx { get; private set; }
+    #endregion
 
     [Header("Attack details")]
     public Vector2 [] attackMovement;
@@ -25,10 +31,6 @@ public class Player : Entity
     public float dashDuration = 0.2f;
     private float defaultDashSpeed;
     public float dashDirection { get;private set; }
-
-    public SkillManager skill { get; private set; }
-    public GameObject sword { get; private set; }
-    public Player_FX fx { get; private set; }
 
 
     #region States
@@ -54,6 +56,8 @@ public class Player : Entity
         base.Awake();
 
         PlayerInput = GetComponent<PlayerInput>();
+
+        Movement = new PlayerMovement(this);
 
         stateMachine = new PlayerStateMachine();
 
@@ -113,6 +117,14 @@ public class Player : Entity
         }
     }
 
+    public void SetDashDirection(float direction)
+    {
+        if (direction == 0f)
+            direction = facingDirection;
+
+        dashDirection = direction;
+    }
+
     public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
     {
         moveSpeed = moveSpeed * (1f - _slowPercentage);
@@ -165,15 +177,15 @@ public class Player : Entity
         if(skill.dash.dashUnlocked == false)
             return;
 
-        if (UnityEngine.Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill())
-        {
-            dashDirection = UnityEngine.Input.GetAxisRaw("Horizontal");
+        if (!PlayerInput.DashPressed)
+            return;
 
-            if(dashDirection == 0f)
-                dashDirection = facingDirection;
+        if (!skill.dash.CanUseSkill())
+            return;
 
-            stateMachine.ChangeState(dashState);
-        }
+        SetDashDirection(PlayerInput.XInput);
+        stateMachine.ChangeState(dashState);
+
     }
 
     public override void Die()
