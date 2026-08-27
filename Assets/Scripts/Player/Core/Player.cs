@@ -8,6 +8,8 @@ public class Player : Entity
     #region Component
     public PlayerInput PlayerInput { get; private set; }
     public PlayerMovement Movement { get; private set; }
+    public PlayerAnimation Animation { get; private set; }
+    public PlayerCombat Combat { get; private set; }
     public SkillManager skill { get; private set; }
     public GameObject sword { get; private set; }
     public Player_FX fx { get; private set; }
@@ -58,6 +60,8 @@ public class Player : Entity
         PlayerInput = GetComponent<PlayerInput>();
 
         Movement = new PlayerMovement(this);
+        Animation = new PlayerAnimation(this);
+        Combat = new PlayerCombat(this);
 
         stateMachine = new PlayerStateMachine();
 
@@ -104,7 +108,7 @@ public class Player : Entity
             return;
 
         base.Update();
-        stateMachine.currentState.Update();
+        stateMachine.Update();
 
         CheckForDashInput();
 

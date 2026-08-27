@@ -22,18 +22,21 @@ public class PlayerState
 
     public virtual void Enter()
     {
-        player.anim.SetBool(animBoolName, true);
+        player.Animation.PlayState(animBoolName);
+        //player.anim.SetBool(animBoolName, true);
         triggerCalled = false;
     }
     public virtual void Update()
     {
         stateTimer -= Time.deltaTime;
 
-        player.anim.SetFloat("yVelocity", player.rb.velocity.y);
+        player.Animation.SetYVelocity(player.rb.velocity.y);
+        //player.anim.SetFloat("yVelocity", player.rb.velocity.y);
     }
     public virtual void Exit()
     {
-        player.anim.SetBool(animBoolName, false);
+        player.Animation.StopState(animBoolName);
+        //player.anim.SetBool(animBoolName, false);
     }
 
     public virtual void AnimationFinishTrigger()

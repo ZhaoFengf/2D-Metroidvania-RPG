@@ -129,12 +129,14 @@
     <Compile Include="Assets\Scripts\UI\UIMainMenu.cs" />
     <Compile Include="Assets\Scripts\Enemy\Slime\Enemy_Slime.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+    <Compile Include="Assets\Scripts\Player\Core\PlayerCombat.cs" />
     <Compile Include="Assets\Scripts\Enemy\Shady\ShadyBattleState.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\ItemDrop.cs" />
     <Compile Include="Assets\Scripts\Skill\Dodge_Skill.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\ThunderStrike_Effect.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIInGame.cs" />
+    <Compile Include="Assets\Scripts\Player\Core\PlayerAnimation.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerWallJumpState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />

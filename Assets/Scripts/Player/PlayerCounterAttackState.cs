@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCounterAttackState : PlayerState
@@ -16,7 +14,8 @@ public class PlayerCounterAttackState : PlayerState
 
         canCreateClone = true;
         stateTimer = player.counterAttackDuration;
-        player.anim.SetBool("SuccessfulCounterAttack", false);
+        player.Animation.SetCounterSuccess(false);
+        //player.anim.SetBool("SuccessfulCounterAttack", false);
     }
 
     public override void Exit()
@@ -64,6 +63,7 @@ public class PlayerCounterAttackState : PlayerState
     private void SuccessfulCounterAttack()
     {
         stateTimer = 10;
-        player.anim.SetBool("SuccessfulCounterAttack", true);
+        player.Animation.SetCounterSuccess(true);
+        //player.anim.SetBool("SuccessfulCounterAttack", true);
     }
 }

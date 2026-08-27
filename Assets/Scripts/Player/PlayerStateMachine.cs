@@ -14,8 +14,16 @@ public class PlayerStateMachine
 
     public void ChangeState(PlayerState _newState)
     {
-        currentState.Exit();
+        if (_newState == null)
+            return;
+
+        currentState?.Exit();
         currentState = _newState;
         currentState.Enter();
+    }
+
+    public void Update()
+    {
+        currentState?.Update();
     }
 }
