@@ -8,7 +8,7 @@ public class PlayerBlackHoleState : PlayerState
     private bool skillUsed;
     private float defaultGravityScale;
 
-    public PlayerBlackHoleState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerBlackHoleState(Player _player, PlayerStateMachine _stateMachine, PlayerStateId _id, string _animBoolName) : base(_player, _stateMachine, _id, _animBoolName)
     {
     }
 
@@ -53,7 +53,7 @@ public class PlayerBlackHoleState : PlayerState
 
         if(player.skill.blackHole.SkillCompleted())
         {
-            stateMachine.ChangeState(player.airState);
+            stateMachine.ChangeState(PlayerStateId.Air);
         }
 
     }

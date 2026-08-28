@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class PlayerJumpState : PlayerState
 {
-    public PlayerJumpState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerJumpState(Player _player, PlayerStateMachine _stateMachine, PlayerStateId _id, string _animBoolName) : base(_player, _stateMachine, _id, _animBoolName)
     {
     }
 
@@ -25,6 +21,6 @@ public class PlayerJumpState : PlayerState
         base.Update();
 
         if(player.rb.velocity.y < 0)
-            stateMachine.ChangeState(player.airState);
+            stateMachine.ChangeState(PlayerStateId.Air);
     }
 }

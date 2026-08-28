@@ -4,11 +4,12 @@ public class PlayerPrimaryAttackState : PlayerState
 {
     public int comboCounter { get; private set; }
     private float lastAttackTime = 0f;
-    private float comboWindow = 1f; 
-    public PlayerPrimaryAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    private float comboWindow = 1f;
+
+    public PlayerPrimaryAttackState(Player _player, PlayerStateMachine _stateMachine, PlayerStateId _id, string _animBoolName) : base(_player, _stateMachine, _id, _animBoolName)
     {
     }
- 
+
     public override void Enter()
     {
         base.Enter();
@@ -48,6 +49,6 @@ public class PlayerPrimaryAttackState : PlayerState
             player.Movement.Stop();
 
         if (triggerCalled)
-            stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(PlayerStateId.Idle);
     }
 }

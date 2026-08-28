@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
 {
-    public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, PlayerStateId _id, string _animBoolName) : base(_player, _stateMachine, _id, _animBoolName)
     {
     }
+
+    //public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    //{
+    //}
 
     public override void Enter()
     {
@@ -24,13 +28,13 @@ public class PlayerGroundedState : PlayerState
 
         if (!player.isGroundedDeteced())
         {
-            stateMachine.ChangeState(player.airState);
+            stateMachine.ChangeState(PlayerStateId.Air);
             return;
         }
 
         if (player.PlayerInput.JumpPressed)
         {
-            stateMachine.ChangeState(player.jumpState);
+            stateMachine.ChangeState(PlayerStateId.Jump);
             return;
         }
 
@@ -42,19 +46,19 @@ public class PlayerGroundedState : PlayerState
                 return;
             }
                 
-            stateMachine.ChangeState(player.blackHoleState);
+            stateMachine.ChangeState(PlayerStateId.BlackHole);
             return;
         }
 
         if (player.PlayerInput.CounterPressed && player.skill.parry.parryUnlocked)
         {
-            stateMachine.ChangeState(player.counterAttackState);
+            stateMachine.ChangeState(PlayerStateId.CounterAttack);
             return;
         }
 
         if (player.PlayerInput.AttackPressed)
         {
-            stateMachine.ChangeState(player.primaryAttackState);
+            stateMachine.ChangeState(PlayerStateId.PrimaryAttack);
             return;
         }
         /* 20260826 对其进行重构，先进行注释，后续恢复并转移到其它的地方

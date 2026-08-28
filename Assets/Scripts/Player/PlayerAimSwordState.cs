@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerAimSwordState : PlayerState
 {
-    public PlayerAimSwordState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerAimSwordState(Player _player, PlayerStateMachine _stateMachine, PlayerStateId _id, string _animBoolName) : base(_player, _stateMachine, _id, _animBoolName)
     {
     }
+
     public override void Enter()
     {
         base.Enter();
@@ -26,7 +27,7 @@ public class PlayerAimSwordState : PlayerState
         player.Movement.Stop();
 
         if(player.PlayerInput.AimReleased)
-            stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(PlayerStateId.Idle);
 
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (player.transform.position.x > mousePosition.x && player.facingDirection == 1)

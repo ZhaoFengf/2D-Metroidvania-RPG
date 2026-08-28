@@ -4,7 +4,7 @@ public class PlayerCounterAttackState : PlayerState
 {
     private bool canCreateClone;
 
-    public PlayerCounterAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerCounterAttackState(Player _player, PlayerStateMachine _stateMachine, PlayerStateId _id, string _animBoolName) : base(_player, _stateMachine, _id, _animBoolName)
     {
     }
 
@@ -57,7 +57,7 @@ public class PlayerCounterAttackState : PlayerState
             }
         }
         if(stateTimer < 0 || triggerCalled)
-            stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(PlayerStateId.Idle);
     }
 
     private void SuccessfulCounterAttack()

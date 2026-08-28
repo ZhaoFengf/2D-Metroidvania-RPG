@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\UI\UIOptions.cs" />
     <Compile Include="Assets\Scripts\Enemy\Archer\Enemy_Archer.cs" />
     <Compile Include="Assets\Scripts\Enemy\DeathBringer\DeathBringerAttackState.cs" />
+    <Compile Include="Assets\Scripts\Player\Core\PlayerMovement.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerWallSlideState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Archer\ArcherStunnedState.cs" />
@@ -102,7 +103,9 @@
     <Compile Include="Assets\Scripts\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\Enemy\Shady\ShadyMoveState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Slime\SlimeAttackState.cs" />
+    <Compile Include="Assets\Scripts\Player\State\PlayerState.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\ItemObject.cs" />
+    <Compile Include="Assets\Scripts\Player\State\PlayerStateFactory.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerJumpState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCounterAttackState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
@@ -142,6 +145,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\PlayerItemDrop.cs" />
     <Compile Include="Assets\Scripts\UI\UIToolTip.cs" />
+    <Compile Include="Assets\Scripts\Player\Core\PlayerAbilityController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\Scripts\UI\UIItemToolTip.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
@@ -166,6 +170,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\Enemy\Archer\ArcherGroundedState.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\ItemEffect.cs" />
+    <Compile Include="Assets\Scripts\Player\State\PlayerStateId.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonStunnedState.cs" />
     <Compile Include="Assets\Scripts\UI\UIHealthBar.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonBattleState.cs" />
@@ -201,11 +206,11 @@
     <Compile Include="Assets\Scripts\Enemy\Slime\SlimeBattleState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonIdleState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerIdleState.cs" />
+    <Compile Include="Assets\Scripts\Player\State\PlayerStateMachine.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\FreezeEnemy_Effect.cs" />
     <Compile Include="Assets\Scripts\Stats\Stat.cs" />
     <Compile Include="Assets\Scripts\DeadZone.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCatchSwordState.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Shady\ShadyGroundedState.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\Effects\Heal_Effect.cs" />
     <Compile Include="Assets\Scripts\Stats\EnemyStats.cs" />
@@ -215,8 +220,6 @@
     <Compile Include="Assets\Scripts\Enemy\Slime\SlimeIdleState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Archer\ArcherBattleState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAirState.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerStateMachine.cs" />
     <Compile Include="Assets\Scripts\Stats\Entity.cs" />
     <Compile Include="Assets\Scripts\ItemsAndInventory\ItemData_Equipment.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy_AnimationTriggers.cs" />

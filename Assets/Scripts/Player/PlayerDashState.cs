@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerDashState : PlayerState
 {
-
-    public PlayerDashState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerDashState(Player _player, PlayerStateMachine _stateMachine, PlayerStateId _id, string _animBoolName) : base(_player, _stateMachine, _id, _animBoolName)
     {
     }
 
@@ -38,14 +37,14 @@ public class PlayerDashState : PlayerState
 
         if (!player.isGroundedDeteced() && player.isWallDetected())
         {
-            stateMachine.ChangeState(player.wallSlideState);
+            stateMachine.ChangeState(PlayerStateId.WallSlide);
             return;
         }
 
 
         if (stateTimer <= 0f)
         {
-            stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(PlayerStateId.Idle);
             return;
         }
 

@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerGroundedState
 {
-    public PlayerIdleState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerIdleState(Player _player, PlayerStateMachine _stateMachine, PlayerStateId _id, string _animBoolName) : base(_player, _stateMachine, _id, _animBoolName)
     {
-
     }
 
     public override void Enter()
@@ -25,6 +24,6 @@ public class PlayerIdleState : PlayerGroundedState
         base.Update();
 
         if(player.PlayerInput.XInput != 0 && !player.isBusy)
-            stateMachine.ChangeState(player.moveState);
+            stateMachine.ChangeState(PlayerStateId.Move);
     }
 }

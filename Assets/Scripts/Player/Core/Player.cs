@@ -10,6 +10,8 @@ public class Player : Entity
     public PlayerMovement Movement { get; private set; }
     public PlayerAnimation Animation { get; private set; }
     public PlayerCombat Combat { get; private set; }
+    public PlayerAbilityController Ability { get; private set; }
+    public PlayerStateFactory StateFactory { get; private set; }
     public SkillManager skill { get; private set; }
     public GameObject sword { get; private set; }
     public Player_FX fx { get; private set; }
@@ -36,7 +38,7 @@ public class Player : Entity
 
 
     #region States
-    public PlayerStateMachine stateMachine { get; private set; }
+    public PlayerStateMachine StateMachine { get; private set; }
 
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
@@ -62,28 +64,28 @@ public class Player : Entity
         Movement = new PlayerMovement(this);
         Animation = new PlayerAnimation(this);
         Combat = new PlayerCombat(this);
+        Ability = new PlayerAbilityController(this);
 
-        stateMachine = new PlayerStateMachine();
+        StateMachine = new PlayerStateMachine();
+        StateFactory = new PlayerStateFactory(this, StateMachine);
 
-        idleState = new PlayerIdleState(this, stateMachine, "Idle");
-        moveState = new PlayerMoveState(this, stateMachine, "Move");
-        jumpState = new PlayerJumpState(this, stateMachine, "Jump");
-        airState  = new PlayerAirState(this, stateMachine, "Jump");
-        dashState = new PlayerDashState(this, stateMachine, "Dash");
+        StateMachine.RegisterState(StateFactory.CreateIdle());
+        StateMachine.RegisterState(StateFactory.CreateMove());
+        StateMachine.RegisterState(StateFactory.CreateJump());
+        StateMachine.RegisterState(StateFactory.CreateAir());
+        StateMachine.RegisterState(StateFactory.CreateDash());
 
-        wallSlideState = new PlayerWallSlideState(this, stateMachine, "WallSlide");
-        wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
+        StateMachine.RegisterState(StateFactory.CreateWallSlide());
+        StateMachine.RegisterState(StateFactory.CreateWallJump());
 
-        primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
-        counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
+        StateMachine.RegisterState(StateFactory.CreatePrimaryAttack());
+        StateMachine.RegisterState(StateFactory.CreateCounterAttack());
 
-        aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
-        catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
+        StateMachine.RegisterState(StateFactory.CreateAimSword());
+        StateMachine.RegisterState(StateFactory.CreateCatchSword());
 
-        blackHoleState = new PlayerBlackHoleState(this, stateMachine, "Jump");
-
-        deadState = new PlayerDeadState(this, stateMachine, "Die");
-
+        StateMachine.RegisterState(StateFactory.CreateBlackHole());
+        StateMachine.RegisterState(StateFactory.CreateDead());
     }
 
     protected override void Start()
@@ -94,7 +96,7 @@ public class Player : Entity
 
         skill = SkillManager.instance;
 
-        stateMachine.Initialize(idleState);
+        StateMachine.Initialize(PlayerStateId.Idle);
 
         defaultMoveSpeed = moveSpeed;
         defaultJumpForce = jumpForce;
@@ -108,17 +110,12 @@ public class Player : Entity
             return;
 
         base.Update();
-        stateMachine.Update();
+        StateMachine.Update();
 
-        CheckForDashInput();
+        Ability.HandleDash();
+        Ability.HandleCrystal();
+        Ability.HandleFlask();
 
-        if(UnityEngine.Input.GetKeyDown(KeyCode.F) && skill.crystal.crystalUnlocked)
-            skill.crystal.CanUseSkill();
-
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha1)) //Ö÷¼üÅÌµÄ1
-        {
-            Inventory.instance.UseFlask();
-        }
     }
 
     public void SetDashDirection(float direction)
@@ -155,14 +152,9 @@ public class Player : Entity
 
     public void CatchTheSword()
     {
-        stateMachine.ChangeState(catchSwordState);
+        StateMachine.ChangeState(PlayerStateId.CatchSword);
         Destroy(sword);
     }
-
-    //public void ExitBlackHoleAbility()
-    //{
-    //    stateMachine.ChangeState(airState);
-    //}
 
     public IEnumerator BusyFor(float _seconds)
     {
@@ -171,31 +163,13 @@ public class Player : Entity
         isBusy = false;
     }
 
-    public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    public void AnimationTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
 
-    private void CheckForDashInput()
-    {
-        if(isWallDetected())
-            return;
-
-        if(skill.dash.dashUnlocked == false)
-            return;
-
-        if (!PlayerInput.DashPressed)
-            return;
-
-        if (!skill.dash.CanUseSkill())
-            return;
-
-        SetDashDirection(PlayerInput.XInput);
-        stateMachine.ChangeState(dashState);
-
-    }
 
     public override void Die()
     {
         base.Die();
-        stateMachine.ChangeState(deadState);
+        StateMachine.ChangeState(PlayerStateId.Dead);
     }
 
     protected override void SetupZeroKnockbackPower()

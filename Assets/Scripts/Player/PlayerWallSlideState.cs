@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerWallSlideState : PlayerState
 {
-    public PlayerWallSlideState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerWallSlideState(Player _player, PlayerStateMachine _stateMachine, PlayerStateId _id, string _animBoolName) : base(_player, _stateMachine, _id, _animBoolName)
     {
     }
 
@@ -23,21 +23,21 @@ public class PlayerWallSlideState : PlayerState
 
         if (player.isWallDetected() == false)
         {
-            stateMachine.ChangeState(player.airState);
+            stateMachine.ChangeState(PlayerStateId.Air);
             return;
         }
 
 
         if (player.PlayerInput.JumpPressed)
         {
-            stateMachine.ChangeState(player.wallJumpState);
+            stateMachine.ChangeState(PlayerStateId.WallJump);
             return;
         }
             
 
         if (player.PlayerInput.XInput != 0 && player.facingDirection != Mathf.Sign(player.PlayerInput.XInput))
         {
-            stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(PlayerStateId.Idle);
             return;
         }
 
@@ -47,7 +47,7 @@ public class PlayerWallSlideState : PlayerState
             player.rb.velocity = new Vector2(0, player.rb.velocity.y * 0.7f);
 
         if(player.isGroundedDeteced())
-            stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(PlayerStateId.Idle);
     }
 
 }
