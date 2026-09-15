@@ -22,11 +22,11 @@ public class PlayerPrimaryAttackState : PlayerState
         //player.anim.SetInteger("ComboCounter", comboCounter);
         player.Animation.SetComboCounter(comboCounter);
 
-        float attackDirection = player.facingDirection;
-        if(player.PlayerInput.XInput != 0)
-            attackDirection = player.PlayerInput.XInput;
+        float attackDirection = player.Movement.FacingDirection;
+        if(player.Intent.MoveX != 0)
+            attackDirection = player.Intent.MoveX;
 
-        player.SetVelocity(player.attackMovement[comboCounter].x * attackDirection, player.attackMovement[comboCounter].y);
+        player.Movement.AttackMove(player.attackMovement[comboCounter].x * attackDirection, player.attackMovement[comboCounter].y);
 
         stateTimer = .1f;
     }
@@ -49,6 +49,6 @@ public class PlayerPrimaryAttackState : PlayerState
             player.Movement.Stop();
 
         if (triggerCalled)
-            stateMachine.ChangeState(PlayerStateId.Idle);
+            ChangeState(PlayerStateId.Idle);
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAimSwordState : PlayerState
@@ -12,13 +10,14 @@ public class PlayerAimSwordState : PlayerState
     {
         base.Enter();
 
-        player.skill.sword.DotsActive(true);
+        //player.skill.sword.DotsActive(true);
+        player.Ability.SetSwordAimDotsActive(true);
     }
     public override void Exit()
     {
         base.Exit();
 
-        player.StartCoroutine("BusyFor", .2f);
+        player.StartCoroutine(player.BusyFor(.2f));
     }
     public override void Update()
     {
@@ -26,13 +25,19 @@ public class PlayerAimSwordState : PlayerState
 
         player.Movement.Stop();
 
-        if(player.PlayerInput.AimReleased)
-            stateMachine.ChangeState(PlayerStateId.Idle);
+        if (player.Intent.AimReleased)
+        {
+            ChangeState(PlayerStateId.Idle);
+            return;
+        }
+        player.Movement.FaceTargetX(player.Intent.AimWorldPosition.x);
 
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (player.transform.position.x > mousePosition.x && player.facingDirection == 1)
-            player.Flip();
-        else if (player.transform.position.x < mousePosition.x && player.facingDirection == -1)
-            player.Flip();
+        //Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //player.Movement.FaceTargetX(mousePosition.x);
+
+        //if (player.transform.position.x > mousePosition.x && player.facingDirection == 1)
+        //    player.Flip();
+        //else if (player.transform.position.x < mousePosition.x && player.facingDirection == -1)
+        //    player.Flip();
     }
 }

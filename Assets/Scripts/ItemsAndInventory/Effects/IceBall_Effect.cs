@@ -13,7 +13,9 @@ public class IceBall_Effect : ItemEffect
     {
         Player player = PlayerManager.instance.player;
 
-        bool thridAttack = player.primaryAttackState.comboCounter == 2;
+        PlayerPrimaryAttackState attackState = player.StateMachine.GetState(PlayerStateId.PrimaryAttack) as PlayerPrimaryAttackState;
+
+        bool thridAttack = attackState.comboCounter == 2;
 
         if (thridAttack)
         {

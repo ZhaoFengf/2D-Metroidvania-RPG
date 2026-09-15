@@ -14,16 +14,17 @@ public class PlayerIdleState : PlayerGroundedState
         player.Movement.Stop();
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void Update()
     {
         base.Update();
 
-        if(player.PlayerInput.XInput != 0 && !player.isBusy)
-            stateMachine.ChangeState(PlayerStateId.Move);
+        if (stateMachine.CurrentState != this)
+            return;
+
+        if (player.Intent.MoveX != 0 && !player.IsBusy)
+        {
+            ChangeState(PlayerStateId.Move);
+            return;
+        }
     }
 }

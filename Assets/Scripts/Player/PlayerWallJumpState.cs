@@ -12,12 +12,9 @@ public class PlayerWallJumpState : PlayerState
     {
         base.Enter();
         stateTimer = .4f;
-        player.SetVelocity(5 * -player.facingDirection, player.jumpForce);
-    }
+        //player.SetVelocity(5 * -player.facingDirection, player.JumpForce);
+        player.Movement.WallJump();
 
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void Update()
@@ -25,12 +22,12 @@ public class PlayerWallJumpState : PlayerState
         base.Update();
         if(stateTimer <= 0)
         {
-            stateMachine.ChangeState(PlayerStateId.Air);
+            ChangeState(PlayerStateId.Air);
             return;
         }
         if(player.isGroundedDeteced())
         {
-            stateMachine.ChangeState(PlayerStateId.Idle);
+            ChangeState(PlayerStateId.Idle);
             return;
         }
     }

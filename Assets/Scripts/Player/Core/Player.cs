@@ -12,8 +12,9 @@ public class Player : Entity
     public PlayerCombat Combat { get; private set; }
     public PlayerAbilityController Ability { get; private set; }
     public PlayerStateFactory StateFactory { get; private set; }
+    public PlayerStateTransitionPolicy TransitionPolicy { get; private set; }
     public SkillManager skill { get; private set; }
-    public GameObject sword { get; private set; }
+    public GameObject Sword { get; private set; }
     public Player_FX fx { get; private set; }
     #endregion
 
@@ -22,37 +23,39 @@ public class Player : Entity
     public float counterAttackDuration = .2f;
     
 
-    public bool isBusy { get; private set; }
+    public bool IsBusy { get; private set; }
     [Header("Movement")]
-    public float moveSpeed = 5f;
-    public float jumpForce = 10f;
+    [SerializeField] private float baseMoveSpeed = 5f;
+    [SerializeField] private float baseJumpForce = 10f;
+
+    public float MoveSpeed { get; private set; }
+    public float JumpForce { get; private set; }
+
     public float swordReturnImpact = 8f;
-    private float defaultMoveSpeed;
-    private float defaultJumpForce;
+    //public float moveSpeed = 5f;
+    //public float jumpForce = 10f;
+    //public float swordReturnImpact = 8f;
+    //private float defaultMoveSpeed;
+    //private float defaultJumpForce;
 
     [Header("Dash")]
-    public float dashSpeed = 15f;
-    public float dashDuration = 0.2f;
-    private float defaultDashSpeed;
-    public float dashDirection { get;private set; }
+    [SerializeField] private float baseDashSpeed = 15f;
+    [SerializeField] private float dashDuration = 0.2f;
 
+    public float DashSpeed { get; private set; }
+    public float DashDuration => dashDuration;
+    //public float dashSpeed = 15f;
+    //public float dashDuration = 0.2f;
+    //private float defaultDashSpeed;
+    public float DashDirection { get;private set; }
+
+    public PlayerInputSnapshot Input => PlayerInput.Current;
+    public PlayerIntent Intent { get; private set; }
+
+    private PlayerIntentResolver intentResolver;
 
     #region States
     public PlayerStateMachine StateMachine { get; private set; }
-
-    public PlayerIdleState idleState { get; private set; }
-    public PlayerMoveState moveState { get; private set; }
-    public PlayerJumpState jumpState { get; private set; }
-    public PlayerAirState airState { get; private set; }
-    public PlayerDashState dashState { get; private set; }
-    public PlayerWallSlideState wallSlideState { get; private set; }
-    public PlayerWallJumpState wallJumpState { get; private set; }
-    public PlayerPrimaryAttackState primaryAttackState { get; private set; }
-    public PlayerCounterAttackState counterAttackState { get; private set; }
-    public PlayerAimSwordState aimSwordState { get; private set; }
-    public PlayerCatchSwordState catchSwordState { get; private set; }
-    public PlayerBlackHoleState blackHoleState { get; private set; }
-    public PlayerDeadState deadState { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -68,8 +71,12 @@ public class Player : Entity
 
         StateMachine = new PlayerStateMachine();
         StateFactory = new PlayerStateFactory(this, StateMachine);
+        TransitionPolicy = new PlayerStateTransitionPolicy();
+
+        intentResolver = new PlayerIntentResolver(Camera.main);
 
         StateMachine.RegisterState(StateFactory.CreateIdle());
+
         StateMachine.RegisterState(StateFactory.CreateMove());
         StateMachine.RegisterState(StateFactory.CreateJump());
         StateMachine.RegisterState(StateFactory.CreateAir());
@@ -98,9 +105,9 @@ public class Player : Entity
 
         StateMachine.Initialize(PlayerStateId.Idle);
 
-        defaultMoveSpeed = moveSpeed;
-        defaultJumpForce = jumpForce;
-        defaultDashSpeed = dashSpeed;
+        MoveSpeed = baseMoveSpeed;
+        JumpForce = baseJumpForce;
+        DashSpeed = baseDashSpeed;
 
     }
 
@@ -109,28 +116,91 @@ public class Player : Entity
         if(Time.timeScale == 0f)
             return;
 
+        PlayerInput.UpdateInput();
+
+        Intent = intentResolver.Resolve(PlayerInput.Current);
+
+
         base.Update();
+
+        HandleSystemInput(); //当前是用于检测是否退出游戏
+
+        Ability.HandleInput();
+
         StateMachine.Update();
-
-        Ability.HandleDash();
-        Ability.HandleCrystal();
-        Ability.HandleFlask();
-
     }
 
+    //public void RequestState(PlayerStateId stateId)
+    //{
+    //    StateMachine.ChangeState(stateId);
+    //}
+    //public bool RequestState(PlayerStateId stateId)
+    //{
+    //    PlayerState currentState = StateMachine.CurrentState;
+
+    //    if (currentState == null) return false;
+
+    //    if (!TransitionPolicy.CanTransition(currentState.Id, stateId))
+    //    {
+    //        return false;
+    //    }
+
+    //    StateMachine.ChangeState(stateId);
+    //    return true;
+    //}
+    public bool RequestState(PlayerStateId stateId)
+    {
+        PlayerState currentState = StateMachine.CurrentState;
+
+        if (currentState == null)
+        {
+            Debug.LogError($"Player: Cannot request state '{stateId}' because " + "the StateMachine has not been initialized.");
+            return false;
+        }
+
+        if (!TransitionPolicy.CanTransition(currentState.Id, stateId))
+        {
+            Debug.LogWarning($"Player: Transition rejected. " + $"'{currentState.Id}' -> '{stateId}'.");
+            return false;
+        }
+
+        return StateMachine.ChangeState(stateId);
+    }
+
+    private void HandleSystemInput()
+    {
+        if (PlayerInput.QuitGame)
+        {
+            Application.Quit();
+        }
+    }
+
+
+ 
     public void SetDashDirection(float direction)
     {
         if (direction == 0f)
             direction = facingDirection;
 
-        dashDirection = direction;
+        DashDirection = direction;
     }
 
+
+    public void SetInvincible(bool value)
+    {
+        stat.MakeInvencible(value);
+    }
+
+    public void CreateDashAfterImage()
+    {
+        fx.CreateAfterImage();
+    }
+   
     public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
     {
-        moveSpeed = moveSpeed * (1f - _slowPercentage);
-        jumpForce = jumpForce * (1f - _slowPercentage);
-        dashSpeed = dashSpeed * (1f - _slowPercentage);
+        MoveSpeed *= 1f - _slowPercentage;
+        JumpForce *= 1f - _slowPercentage;
+        DashSpeed *= 1f - _slowPercentage;
         anim.speed = anim.speed * (1f - _slowPercentage);
 
         Invoke("ReturnDefaultSpeed", _slowDuration);
@@ -140,36 +210,46 @@ public class Player : Entity
     {
         base.ReturnDefaultSpeed();
 
-        moveSpeed = defaultMoveSpeed;
-        jumpForce = defaultJumpForce;
-        dashSpeed = defaultDashSpeed;
+        MoveSpeed = baseMoveSpeed;
+        JumpForce = baseJumpForce;
+        DashSpeed = baseDashSpeed;
     }
 
     public void AssignNewSword(GameObject _newSword)
     {
-        sword = _newSword;
+        Sword = _newSword;
     }
 
     public void CatchTheSword()
     {
-        StateMachine.ChangeState(PlayerStateId.CatchSword);
-        Destroy(sword);
+        //RequestState(PlayerStateId.CatchSword);
+        //Destroy(sword);
+        GameObject caughtSword = Sword;
+
+        RequestState(PlayerStateId.CatchSword);
+
+        if (caughtSword != null)
+        {
+            Destroy(caughtSword);
+            Sword = null;
+        }
     }
+
 
     public IEnumerator BusyFor(float _seconds)
     {
-        isBusy = true;
+        IsBusy = true;
         yield return new WaitForSeconds(_seconds);
-        isBusy = false;
+        IsBusy = false;
     }
 
-    public void AnimationTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+    public void AnimationTrigger() => StateMachine.CurrentState?.AnimationFinishTrigger();
 
 
     public override void Die()
     {
         base.Die();
-        StateMachine.ChangeState(PlayerStateId.Dead);
+        RequestState(PlayerStateId.Dead);
     }
 
     protected override void SetupZeroKnockbackPower()

@@ -31,9 +31,9 @@ public class BlackHole_Skill : Skill
             blackHoleUnlocked = true;
         }
     }
-    public override bool CanUseSkill()
+    public override bool TryUseSkill()
     {
-        return base.CanUseSkill();
+        return base.TryUseSkill();
     }
 
     public override void UseSkill()

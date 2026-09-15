@@ -12,23 +12,28 @@ public class PlayerDashState : PlayerState
     {
         base.Enter();
 
-        //player.skill.clone.CreateClone(player.transform, Vector2.zero);
-        player.skill.dash.CloneOnDashStart();
+        //player.skill.dash.CloneOnDashStart();
+        //player.StartDash();
+        player.Ability.StartDash();
 
-        stateTimer = player.dashDuration;
+        stateTimer = player.DashDuration;
 
-        player.stat.MakeInvencible(true);
+        //player.stat.MakeInvencible(true);
+        player.SetInvincible(true);
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        player.skill.dash.CloneOnDashArrival();
+        //player.skill.dash.CloneOnDashArrival();
+        //player.EndDash();
+        player.Ability.EndDash();
 
         player.Movement.Stop();
 
-        player.stat.MakeInvencible(false);
+        //player.stat.MakeInvencible(false);
+        player.SetInvincible(false);
     }
 
     public override void Update()
@@ -37,19 +42,20 @@ public class PlayerDashState : PlayerState
 
         if (!player.isGroundedDeteced() && player.isWallDetected())
         {
-            stateMachine.ChangeState(PlayerStateId.WallSlide);
+            ChangeState(PlayerStateId.WallSlide);
             return;
         }
 
 
         if (stateTimer <= 0f)
         {
-            stateMachine.ChangeState(PlayerStateId.Idle);
+            ChangeState(PlayerStateId.Idle);
             return;
         }
 
-        player.Movement.Dash(player.dashDirection);
+        player.Movement.Dash(player.DashDirection);
 
-        player.fx.CreateAfterImage();
+        //player.fx.CreateAfterImage();
+        player.CreateDashAfterImage();
     }
 }

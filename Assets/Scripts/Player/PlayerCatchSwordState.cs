@@ -14,24 +14,26 @@ public class PlayerCatchSwordState : PlayerState
     {
         base.Enter();
 
-        sword = player.sword.transform;
+        sword = player.Sword.transform;
 
         player.fx.PlayDustFX();
         player.fx.ScreenShake(player.fx.shakeSwordImpact);
 
-        if (player.transform.position.x > sword.position.x && player.facingDirection == 1)
-            player.Flip();
-        else if (player.transform.position.x < sword.position.x && player.facingDirection == -1)
-            player.Flip();
+        //if (player.transform.position.x > sword.position.x && player.facingDirection == 1)
+        //    player.Flip();
+        //else if (player.transform.position.x < sword.position.x && player.facingDirection == -1)
+        //    player.Flip();
+        player.Movement.FaceTargetX(sword.position.x);
 
-        player.rb.velocity = new Vector2(player.swordReturnImpact * -player.facingDirection, player.rb.velocity.y);
+        //player.rb.velocity = new Vector2(player.swordReturnImpact * -player.facingDirection, player.rb.velocity.y);
+        player.Movement.SetHorizontalVelocity(player.swordReturnImpact * -player.Movement.FacingDirection);
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        player.StartCoroutine("BusyFor", .2f);
+        player.StartCoroutine(player.BusyFor(.2f));
     }
 
     public override void Update()
@@ -39,6 +41,6 @@ public class PlayerCatchSwordState : PlayerState
         base.Update();
 
         if(triggerCalled)
-            stateMachine.ChangeState(PlayerStateId.Idle);
+            ChangeState(PlayerStateId.Idle);
     }
 }

@@ -21,11 +21,6 @@ public class PlayerDeadState : PlayerState
         GameObject.FindObjectOfType<UI>().SwitchOnEndScreen();
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void Update()
     {
         base.Update();

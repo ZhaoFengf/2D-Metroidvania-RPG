@@ -6,6 +6,8 @@ public class SkillManager : MonoBehaviour
 {
     public static SkillManager instance;
 
+    //private Player player;
+
     public Dash_Skill dash { get; private set; }
     public Clone_Skill clone { get; private set; }
     public Sword_Skill sword { get; private set; }
@@ -24,6 +26,8 @@ public class SkillManager : MonoBehaviour
 
     private void Start()
     {
+        //player = PlayerManager.instance.player;
+
         dash = GetComponent<Dash_Skill>();
         clone = GetComponent<Clone_Skill>();
         sword = GetComponent<Sword_Skill>();
@@ -31,5 +35,18 @@ public class SkillManager : MonoBehaviour
         crystal = GetComponent<Crystal_Skill>();
         parry = GetComponent<Parry_Skill>();
         dorge = GetComponent<Dodge_Skill>();
+
+        //InitializeSkills();
     }
+
+    //private void InitializeSkills()
+    //{
+    //    dash.Initialize(player);
+    //    clone.Initialize(player);
+    //    sword.Initialize(player);
+    //    blackHole.Initialize(player);
+    //    crystal.Initialize(player);
+    //    parry.Initialize(player);
+    //    dorge.Initialize(player);
+    //}
 }

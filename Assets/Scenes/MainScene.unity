@@ -45902,10 +45902,10 @@ MonoBehaviour:
   - {x: 1, y: 2}
   - {x: 4, y: 1}
   counterAttackDuration: 0.2
-  moveSpeed: 8
-  jumpForce: 14
+  baseMoveSpeed: 5
+  baseJumpForce: 15
   swordReturnImpact: 5
-  dashSpeed: 15
+  baseDashSpeed: 15
   dashDuration: 0.2
 --- !u!4 &2065061704
 Transform:
@@ -46172,8 +46172,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57588f4ad519af84f9a3bb0b16b79f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XInput: 0
-  YInput: 0
 --- !u!1 &2075231530
 GameObject:
   m_ObjectHideFlags: 0
@@ -52909,11 +52907,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 623931997357319948, guid: 9c40ad7b0153aa8438c34670cf1767ff, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 623931997357319948, guid: 9c40ad7b0153aa8438c34670cf1767ff, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4379176483456963076, guid: 9c40ad7b0153aa8438c34670cf1767ff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52961,7 +52959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5593124811191134739, guid: 9c40ad7b0153aa8438c34670cf1767ff, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

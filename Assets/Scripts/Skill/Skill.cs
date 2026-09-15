@@ -15,7 +15,8 @@ public class Skill : MonoBehaviour
     {
         player = PlayerManager.instance.player;
 
-        CheckUnlock();
+        //CheckUnlock();
+        Invoke(nameof(CheckUnlock), 0.1f);
     }
 
     protected virtual void Update()
@@ -28,9 +29,15 @@ public class Skill : MonoBehaviour
     {
 
     }
+    //protected Player player { get; private set; }
 
+    //public void Initialize(Player owner)
+    //{
+    //    player = owner;
+    //    CheckUnlock();
+    //}
 
-    public virtual bool CanUseSkill()
+    public virtual bool TryUseSkill()
     {
         if(coolDownTimer < 0)
         {

@@ -22,14 +22,14 @@ public abstract class PlayerState
 
     public virtual void Enter()
     {
-        player.Animation.PlayState(animBoolName);
         triggerCalled = false;
+        player.Animation.PlayState(animBoolName);
     }
     public virtual void Update()
     {
         stateTimer -= Time.deltaTime;
-
-        player.Animation.SetYVelocity(player.rb.velocity.y);
+        //player.Animation.SetYVelocity(player.rb.velocity.y);
+        player.Animation.SetYVelocity(player.Movement.VerticalVelocity);
     }
     public virtual void Exit()
     {
@@ -40,21 +40,9 @@ public abstract class PlayerState
     {
         triggerCalled = true;
     }
+
+    protected bool ChangeState(PlayerStateId stateId)
+    {
+        return player.RequestState(stateId);
+    }
 }
-
-//public class PlayerState
-//{
-//    protected readonly PlayerStateMachine stateMachine;
-//    protected readonly Player player;
-
-//    private readonly string animBoolName;
-
-//    protected float stateTimer;
-//    protected bool triggerCalled;
-
-//    public PlayerState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName)
-//    {
-//        this.player = _player;
-//        this.stateMachine = _stateMachine;
-//        this.animBoolName = _animBoolName;
-//    }

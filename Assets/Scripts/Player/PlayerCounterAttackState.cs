@@ -15,15 +15,29 @@ public class PlayerCounterAttackState : PlayerState
         canCreateClone = true;
         stateTimer = player.counterAttackDuration;
         player.Animation.SetCounterSuccess(false);
-        //player.anim.SetBool("SuccessfulCounterAttack", false);
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void Update()
+    {
+        base.Update();
+
+        player.Movement.Stop();
+
+        player.Combat.PerformCounterAttack();
+
+        if (stateTimer < 0 || triggerCalled)
+            ChangeState(PlayerStateId.Idle);
+    }
+
+    private void SuccessfulCounterAttack()
+    {
+        stateTimer = 10;
+        player.Animation.SetCounterSuccess(true);
+    }
+}
+
+/*
+ public override void Update()
     {
         base.Update();
 
@@ -44,14 +58,16 @@ public class PlayerCounterAttackState : PlayerState
                 {
                     SuccessfulCounterAttack();
 
-                    player.skill.parry.UseSkill();//使用格挡技能，恢复health
+                    //player.skill.parry.UseSkill();
+                    player.UseParrySkill();
 
                     if (canCreateClone)
                     {
                         canCreateClone = false;
-                        //感觉不对劲，被反击了还有再被打一下
-                        //player.skill.clone.CreateCloneWithDelay(hit.transform);
-                        player.skill.parry.MakeMirageOnParry(hit.transform);
+
+                        //player.skill.parry.MakeMirageOnParry(hit.transform);
+                        player.CreateParryMirage(hit.transform);
+
                     }
                 }
             }
@@ -59,11 +75,4 @@ public class PlayerCounterAttackState : PlayerState
         if(stateTimer < 0 || triggerCalled)
             stateMachine.ChangeState(PlayerStateId.Idle);
     }
-
-    private void SuccessfulCounterAttack()
-    {
-        stateTimer = 10;
-        player.Animation.SetCounterSuccess(true);
-        //player.anim.SetBool("SuccessfulCounterAttack", true);
-    }
-}
+ */

@@ -8,32 +8,22 @@ public class PlayerAirState : PlayerState
     {
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void Update()
     {
         base.Update();
         if (player.isWallDetected())
         {
-            stateMachine.ChangeState(PlayerStateId.WallSlide);
+            ChangeState(PlayerStateId.WallSlide);
             return;
         }
 
         if (player.isGroundedDeteced())
         {
-            stateMachine.ChangeState(PlayerStateId.Idle);
+            ChangeState(PlayerStateId.Idle);
             return;
         }
 
-        if (player.PlayerInput.XInput != 0)
-            player.Movement.AirMove(player.PlayerInput.XInput);
+        if (player.Intent.MoveX != 0)
+            player.Movement.AirMove(player.Intent.MoveX);
     }
 }

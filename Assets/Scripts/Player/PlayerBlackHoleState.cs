@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBlackHoleState : PlayerState
@@ -12,26 +10,23 @@ public class PlayerBlackHoleState : PlayerState
     {
     }
 
-    public override void AnimationFinishTrigger()
-    {
-        base.AnimationFinishTrigger();
-    }
-
     public override void Enter()
     {
         base.Enter();
 
-        defaultGravityScale = player.rb.gravityScale;
+        defaultGravityScale = player.Movement.GetGravity();
         skillUsed = false;
         stateTimer = flyTime;
-        player.rb.gravityScale = 0f;
+        //player.rb.gravityScale = 0f;
+        player.Movement.SetGravity(0f);
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        player.rb.gravityScale = defaultGravityScale;
+        //player.rb.gravityScale = defaultGravityScale;
+        player.Movement.SetGravity(defaultGravityScale);
         player.fx.MakeTransprent(false);
     }
 
@@ -40,20 +35,22 @@ public class PlayerBlackHoleState : PlayerState
         base.Update();
 
         if (stateTimer > 0)
-            player.rb.velocity = new Vector2(0, 15);
+            player.Movement.SetVerticalVelocity(15f);
+            //player.rb.velocity = new Vector2(0, 15);
         if (stateTimer < 0)
         {
-            player.rb.velocity = new Vector2(0, -.1f);
-            if (!skillUsed)
-            {
-                if(player.skill.blackHole.CanUseSkill())
-                    skillUsed = true;
-            }
+            //player.rb.velocity = new Vector2(0, -.1f);
+            player.Movement.SetVerticalVelocity(-.1f);
+
+            //if(player.skill.blackHole.CanUseSkill())
+            if(!skillUsed && player.Ability.TryUseBlackHole())
+                skillUsed = true;
         }
 
-        if(player.skill.blackHole.SkillCompleted())
+        //if(player.skill.blackHole.SkillCompleted())
+        if(player.Ability.IsBlackHoleCompleted())
         {
-            stateMachine.ChangeState(PlayerStateId.Air);
+            ChangeState(PlayerStateId.Air);
         }
 
     }

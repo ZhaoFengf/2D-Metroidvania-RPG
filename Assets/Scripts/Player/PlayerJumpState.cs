@@ -11,16 +11,14 @@ public class PlayerJumpState : PlayerState
         player.Movement.Jump();
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void Update()
     {
         base.Update();
 
-        if(player.rb.velocity.y < 0)
-            stateMachine.ChangeState(PlayerStateId.Air);
+        if(player.Movement.VerticalVelocity < 0f)
+        {
+            ChangeState(PlayerStateId.Air);
+            return;
+        }
     }
 }

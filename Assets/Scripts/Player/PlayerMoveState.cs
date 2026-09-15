@@ -8,26 +8,21 @@ public class PlayerMoveState : PlayerGroundedState
     {
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void Update()
     {
         base.Update();
 
-        if (player.PlayerInput.XInput == 0 || player.isWallDetected())
+        if (stateMachine.CurrentState != this) return;
+
+        //if (player.PlayerInput.XInput == 0 || player.isWallDetected())
+        if (player.Intent.MoveX == 0 || player.isWallDetected())
         {
-            stateMachine.ChangeState(PlayerStateId.Idle);
+            ChangeState(PlayerStateId.Idle);
             return;
         }
 
-        player.Movement.Move(player.PlayerInput.XInput);
+        //player.Movement.Move(player.PlayerInput.XInput);
+        player.Movement.Move(player.Intent.MoveX);
+
     }
 }
